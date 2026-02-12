@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 13:34:19 by jodde             #+#    #+#             */
-/*   Updated: 2026/01/26 14:56:48 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/08 18:46:19 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_upper(const char *s)
 	u = 0;
 	while(s[i])
 	{
-		u = std::toupper(s[i]);
+		u = static_cast<char>(std::toupper(static_cast<unsigned char>(s[i])));
 		std::cout << u;
 		i++;
 	}
