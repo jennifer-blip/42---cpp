@@ -6,7 +6,7 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/11 10:32:21 by jodde             #+#    #+#              #
-#    Updated: 2026/02/11 11:42:26 by jodde            ###   ########.fr        #
+#    Updated: 2026/02/13 11:16:56 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ $(OBJ_DIR)/%.o : %.cpp
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $< -o $@
 
-clean : rm -rf $(OBJ_DIR)
+clean : 
+	rm -rf $(OBJ_DIR)
 fclean : clean
 	rm -f $(TARGET)
 re : fclean all
