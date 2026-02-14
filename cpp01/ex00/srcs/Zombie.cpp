@@ -1,11 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/14 18:52:20 by jodde             #+#    #+#             */
+/*   Updated: 2026/02/14 18:52:22 by jodde            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Zombie.hpp"
 
-void Zombie::announce(void)
+void Zombie::announce(void) const
 {
-    std::cout<<this->_name<<": "<<"BraiiiiiiinnnzzzZ..."<<std::endl;
-}
-
-void  announce(Zombie* z)
-{
-    std::cout<<z->getName()<<": "<<"BraiiiiiiinnnzzzZ..."<<std::endl;
+    std::cout<<this->getName()<<": "<<"BraiiiiiiinnnzzzZ..."<<std::endl;
 }
