@@ -6,13 +6,14 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:51:32 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/14 19:10:03 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/14 19:51:55 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # pragma once
 #include <iostream>
 #include <string>
+#include <sstream>
 
 
 class Zombie
@@ -20,19 +21,17 @@ class Zombie
     private:
         std::string _name;
     public:
-        Zombie(void){};
-        Zombie(std::string Name) : _name(Name)
-        {
-            std::cout<<this->_name<<" is born"<<std::endl;
-        }
-        ~Zombie()
-        {
-            std::cout<<this->_name<<" died"<<std::endl;
-        }
-        void    announce(void) const;
-        std::string getName(void)const {return(_name);};
+        //constructors and destructor
+        Zombie(void){std::cout<<"a zombie is born"<<std::endl;};
+        Zombie(std::string Name) : _name(Name) {};
+        ~Zombie(void){std::cout<<this->_name<<" died"<<std::endl;};
+
+        //accessors
+        void    setName(std::string Name);
+        std::string getName(void)const;
         
+        //methods
+        void    announce(void) const; 
 };
 
-Zombie*     newZombie( std::string name );
-void        randomChump( std::string name);
+Zombie* zombieHorde( int N, std::string name );
