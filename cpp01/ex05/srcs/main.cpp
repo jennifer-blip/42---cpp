@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/19 14:14:37 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/19 15:06:58 by jodde            ###   ########.fr       */
+/*   Created: 2026/02/19 14:14:27 by jodde             #+#    #+#             */
+/*   Updated: 2026/02/19 14:50:25 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#include <iostream>
-#include <string>
+#include "Harl.hpp"
 
-class Harl
+int	main(int argc, char **argv)
 {
-	private :
-		void	debug(void);
-		void	info(void);
-		void	warning(void);
-		void	error(void);
-	public :
-		Harl(){};
-		~Harl(){};
-		void complain( std::string level );
-};
-
-typedef void (Harl::*HarlMemFunct)(void);
+	Harl	log;
+	if (argc < 2)
+		log.complain("info");
+	else
+		log.complain(argv[1]);
+	return (0);
+}
