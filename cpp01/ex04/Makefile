@@ -5,50 +5,50 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/02/11 10:32:21 by jodde             #+#    #+#              #
-#    Updated: 2026/02/15 16:00:55 by jodde            ###   ########.fr        #
+#    Created: 2026/02/19 09:43:25 by jodde             #+#    #+#              #
+#    Updated: 2026/02/19 13:43:13 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#=======Project======
-TARGET := Zombie
+#==========Project==========
+TARGET := replace
 
-#=======Compiler and FLAGS=======
-CC:= g++
-CFLAGS := -std=c++98 -Wall -Wextra -Werror -Wpedantic -Wshadow -Wconversion -Winit-self -Wuninitialized -O0 -g
+#==========Compiler=========
+CC := g++
+CFLAGS := -std=c++98 -Wextra -Werror -Wall -Wconversion -Wpedantic -Winit-self -Wshadow -Wuninitialized -O0 -g
 
-#=======Include and dependencies=======
-INCL:= -I.
-DEPFLAGS:= -MMD -MD
+#==========Includes and deps==
+INCL := -I.
+DEPFLAGS := -MMD -MD
 
-#=======Directories========
-OBJ_DIR := obj
-SRC_DIR := srcs
+#==========Directories=======
+OBJ_DIR := ./objs
 
-#=======Files=======
-SRCS:= $(SRC_DIR)/newZombie.cpp $(SRC_DIR)/Zombie.cpp $(SRC_DIR)/randomChump.cpp $(SRC_DIR)/main.cpp
-OBJS:= $(OBJ_DIR)/newZombie.o $(OBJ_DIR)/Zombie.o $(OBJ_DIR)/randomChump.o $(OBJ_DIR)/main.o
-DEPS:= $(OBJS:.o=.d)
+#==========Sources===========
+SRCS := main.cpp replace.cpp
+OBJS := $(OBJ_DIR)/main.o $(OBJ_DIR)/replace.o
+DEPS := $(OBJS:.o=.d)
 
-#=======Rules=======
+#==========Rules=============
 
 all : $(TARGET)
 
 $(TARGET) : $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+$(OBJ_DIR)/%.o : %.cpp
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $< -o $@
 
 clean :
-	rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 
 fclean : clean
-	rm $(TARGET)
+	@rm -f $(TARGET)
+	@rm *.replace
 
 re : fclean all
 
-#=========dependencies=========
+#============Auto dependecies=====
 -include $(DEPS)
-.PHONY : clean fclean re
+.PHONY : all re fclean clean

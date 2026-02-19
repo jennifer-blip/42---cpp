@@ -5,50 +5,48 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/02/11 10:32:21 by jodde             #+#    #+#              #
-#    Updated: 2026/02/15 15:45:29 by jodde            ###   ########.fr        #
+#    Created: 2026/02/15 16:23:50 by jodde             #+#    #+#              #
+#    Updated: 2026/02/15 17:29:53 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#=======Project======
-TARGET := Horde
+#==========Project=========
+TARGET := lasergame
 
-#=======Compiler and FLAGS=======
-CC:= g++
-CFLAGS := -std=c++98 -Wall -Wextra -Werror -Wpedantic -Wshadow -Wconversion -Winit-self -Wuninitialized -O0 -g
+#==========Compiler========
+CC := g++
+CFLAGS := -std=c++98 -Wall -Wextra -Wconversion -Wshadow -Winit-self -Wuninitialized -Wpedantic -Werror -O0 -g
+#==========Includes and deps==
+INCL := -I.
+DEPFLAGS := -MMD -MD
 
-#=======Include and dependencies=======
-INCL:= -I.
-DEPFLAGS:= -MMD -MD
+#=========Directories=====
+OBJ_DIR := ./obj
 
-#=======Directories========
-OBJ_DIR := obj
-SRC_DIR := srcs
+#=========Sources=========
+SRCS := main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+OBJS := $(OBJ_DIR)/main.o $(OBJ_DIR)/Weapon.o $(OBJ_DIR)/HumanA.o $(OBJ_DIR)/HumanB.o
+DEPS := $(OBJS:.o=.d)
 
-#=======Files=======
-SRCS:= $(SRC_DIR)/Zombie.cpp $(SRC_DIR)/main.cpp
-OBJS:= $(OBJ_DIR)/Zombie.o $(OBJ_DIR)/main.o
-DEPS:= $(OBJS:.o=.d)
-
-#=======Rules=======
+#=========Rules===========
 
 all : $(TARGET)
 
 $(TARGET) : $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+$(OBJ_DIR)/%.o : %.cpp
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $< -o $@
 
 clean :
 	@rm -rf $(OBJ_DIR)
 
 fclean : clean
-	@rm $(TARGET)
+	@rm -f $(TARGET)
 
 re : fclean all
 
-#=========dependencies=========
+#=========Auto dependencies====
 -include $(DEPS)
-.PHONY : clean fclean re
+.PHONY : all re fclean clean

@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:52:20 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/14 19:56:05 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/15 15:43:11 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void   Zombie::setName(std::string Name)
 
 std::string Zombie::getName(void) const 
 {
-    return(_name);
+    return(this->_name);
 }
 
 void Zombie::announce(void) const
