@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:08:27 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/11 10:25:10 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/22 11:35:34 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,56 @@
 #include <string>
 #include <iostream>
 
-std::string CheckEmptyLine(const std::string &prompt)
+int CheckEmptyLine(const std::string &prompt, std::string& ret)
 {
-    std::string ret;
     size_t      start;
     size_t      end;
+    bool        valid_entry = false;
     
-    while (true)
+    while (!valid_entry)
     {
         std::cout << prompt << std::endl;
-        std::getline(std::cin, ret);
+        if (!std::getline(std::cin, ret))
+        {
+            std::cout << "\nEOF detected. Exiting." << std::endl;
+            return (0);
+        }
         start = ret.find_first_not_of(" \t");
         end = ret.find_last_not_of(" \t");
         if (start == std::string::npos)
-        {
             std::cout << "Input cannot be empty. Please try again." << std::endl;
-            continue;
+        else
+        {
+            ret = ret.substr(start, end - start + 1);
+            valid_entry = true;
         }
-        ret = ret.substr(start, end - start + 1);
-        break;
     }
-    return (ret);
+    return (1);
 }
 
 
 void	Phonebook::AddFriend(void)
 {
 	int	i;
+    std::string input;
 
 	i = m_idx % m_max;
     std::cin.ignore();
-	m_c[i].Name = CheckEmptyLine("Enter Name");
-	m_c[i].Lastname = CheckEmptyLine("Enter Last name");
-	m_c[i].Nickname = CheckEmptyLine("Enter Nickname");
-	m_c[i].Phonenumber = CheckEmptyLine("Enter Phonenumber");
-	m_c[i].Darkest_secret = CheckEmptyLine("Enter Darkest secret");
+	if (!CheckEmptyLine("Enter Name", input))
+        return ;
+    m_c[i].SetName(input);
+	if (!CheckEmptyLine("Enter Last name", input))
+        return ;
+    m_c[i].SetLastname(input);
+	if (!CheckEmptyLine("Enter Nickname", input))
+        return ;
+    m_c[i].SetNickname(input);
+	if (!CheckEmptyLine("Enter Phonenumber", input))
+        return ;
+    m_c[i].SetPhonenumber(input);
+	if (!CheckEmptyLine("Enter Darkest secret", input))
+        return ;
+    m_c[i].SetDarkest_secret(input);
 	m_idx++;
 	std::cout<<"Contact successfully added to the phonebook !!!"<<std::endl;
 	std::cout<<"Please enter ADD, SEARCH or EXIT"<<std::endl;

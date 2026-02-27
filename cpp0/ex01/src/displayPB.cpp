@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:08:27 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/10 20:31:23 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/22 14:33:51 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	Phonebook::DisplayContact(int idx)
 		std::cout<<"invalid index, min 1/max 8 contacts in phonebook"<<std::endl;
 		return;
 	}
-	std::cout<<m_c[idx - 1].Name<<std::endl;
-	std::cout<<m_c[idx - 1].Lastname<<std::endl;
-	std::cout<<m_c[idx - 1].Nickname<<std::endl;
-	std::cout<<m_c[idx - 1].Phonenumber<<std::endl;
-	std::cout<<m_c[idx - 1].Darkest_secret<<std::endl;
+	std::cout<<m_c[idx - 1].GetName()<<std::endl;
+	std::cout<<m_c[idx - 1].GetLastname()<<std::endl;
+	std::cout<<m_c[idx - 1].GetNickname()<<std::endl;
+	std::cout<<m_c[idx - 1].GetPhonenumber()<<std::endl;
+	std::cout<<m_c[idx - 1].GetDarkest_secret()<<std::endl;
 	return;
 }
 void	FillCell(std::string str)
@@ -33,12 +33,9 @@ void	FillCell(std::string str)
 
 	len = str.length();
 		if (len >= 10)
-		{
-			tmp = str.substr(0,9);
-			std::cout<<tmp<<".|";
-		}
+			std::cout<<str.substr(0,9) + ".|";
 		else
-			std::cout << std::string(10 - len, ' ') << str << "|";
+			std::cout <<std::string(10 - len, ' ') + str + "|";
 }
 void	Phonebook::DisplayList(void)
 {
@@ -56,9 +53,9 @@ void	Phonebook::DisplayList(void)
 		std::ostringstream oss;
 		oss << (i + 1);
 		FillCell(oss.str());
-		FillCell(m_c[i].Name);
-		FillCell(m_c[i].Lastname);
-		FillCell(m_c[i].Nickname);
+		FillCell(m_c[i].GetName());
+		FillCell(m_c[i].GetLastname());
+		FillCell(m_c[i].GetNickname());
 		std::cout<<std::endl;
 		i++;
 	}

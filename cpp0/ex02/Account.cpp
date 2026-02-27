@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 11:18:21 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/13 11:25:26 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/22 14:41:22 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,10 @@ int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
 //static functions
-
-int	Account::getNbAccounts( void )
-{
-	return (_nbAccounts);
-}
-int	Account::getTotalAmount( void )
-{
-	return (_totalAmount);
-}
-int	Account::getNbDeposits( void )
-{
-	return (_totalNbDeposits);	
-}
-int	Account::getNbWithdrawals( void )
-{
-	return (_totalNbWithdrawals);	
-}
+int	Account::getNbAccounts( void ){	return (_nbAccounts);}
+int	Account::getTotalAmount( void ){ return (_totalAmount);}
+int	Account::getNbDeposits( void ){	return (_totalNbDeposits);}
+int	Account::getNbWithdrawals( void ){ return (_totalNbWithdrawals);}
 void	Account::displayAccountsInfos( void )
 {
 	_displayTimestamp();
@@ -50,7 +37,6 @@ void	Account::displayAccountsInfos( void )
 }
 
 //Non-static functions
-
 void	Account::makeDeposit( int deposit )
 {
 	_displayTimestamp();
@@ -86,10 +72,8 @@ bool	Account::makeWithdrawal( int withdrawal )
 		return (false);
 	}
 }
-int		Account::checkAmount( void ) const
-{
-	return (_amount);
-}
+int		Account::checkAmount( void ) const{	return (_amount);}
+
 void	Account::displayStatus( void ) const
 {
 		_displayTimestamp();

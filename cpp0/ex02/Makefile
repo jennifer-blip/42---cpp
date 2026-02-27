@@ -6,7 +6,7 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/11 10:32:21 by jodde             #+#    #+#              #
-#    Updated: 2026/02/13 11:16:56 by jodde            ###   ########.fr        #
+#    Updated: 2026/02/22 14:42:32 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,9 +41,9 @@ $(OBJ_DIR)/%.o : %.cpp
 	$(CC) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $< -o $@
 
 clean : 
-	rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 fclean : clean
-	rm -f $(TARGET)
+	@rm -f $(TARGET)
 re : fclean all
 
 #=====auto dependancies====

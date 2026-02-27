@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:08:40 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/11 16:46:41 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/21 17:19:50 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,20 @@
 
 class	Contact
 {
+	private :
+		std::string	_name, _lastname, _nickname, _phonenumber, _darkest_secret;
 	public :
-		std::string	Name, Lastname, Nickname, Phonenumber, Darkest_secret;
+		void	SetName(std::string name);
+		void	SetLastname(std::string lastname);
+		void	SetNickname(std::string nickname);
+		void	SetPhonenumber(std::string phonenumber);
+		void	SetDarkest_secret(std::string darkest_secret);
+
+		std::string	GetName();
+		std::string	GetLastname();
+		std::string	GetNickname();
+		std::string	GetPhonenumber();
+		std::string	GetDarkest_secret();
 };
 
 class	Phonebook

@@ -6,7 +6,7 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/08 18:08:53 by jodde             #+#    #+#              #
-#    Updated: 2026/02/10 19:56:52 by jodde            ###   ########.fr        #
+#    Updated: 2026/02/21 17:28:32 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ SRC_DIR := src
 OBJ_DIR := obj
 
 # ==Sources==
-SRCS := $(SRC_DIR)/initPB.cpp $(SRC_DIR)/editPB.cpp $(SRC_DIR)/displayPB.cpp
-OBJS := $(OBJ_DIR)/initPB.o $(OBJ_DIR)/editPB.o $(OBJ_DIR)/displayPB.o
+SRCS := $(SRC_DIR)/initPB.cpp $(SRC_DIR)/editPB.cpp $(SRC_DIR)/displayPB.cpp $(SRC_DIR)/contact.cpp
+OBJS := $(OBJ_DIR)/initPB.o $(OBJ_DIR)/editPB.o $(OBJ_DIR)/displayPB.o $(OBJ_DIR)/contact.o
 DEPS := $(OBJS:.o=.d)
 
 # ==Rules==
