@@ -6,7 +6,7 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/20 10:54:14 by jodde             #+#    #+#              #
-#    Updated: 2026/02/27 10:12:20 by jodde            ###   ########.fr        #
+#    Updated: 2026/02/27 15:17:23 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ DEPFLAGS := -MMD -MP
 SRC_DIR := ./srcs
 OBJ_DIR := ./objs
 #===========Files=========================================================================
-SRCS := $(SRC_DIR)/main.cpp $(SRC_DIR)/Fixed.cpp $(SRC_DIR)/Fixed_op.cpp
-OBJS := $(OBJ_DIR)/main.o $(OBJ_DIR)/Fixed.o $(OBJ_DIR)/Fixed_op.o
+SRCS := $(SRC_DIR)/main.cpp $(SRC_DIR)/Fixed.cpp
+OBJS := $(OBJ_DIR)/main.o $(OBJ_DIR)/Fixed.o
 DEPS := $(OBJS:.o=.d)
 #===========Rules=========================================================================
 all : $(NAME)
