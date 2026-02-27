@@ -6,20 +6,20 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/11 10:32:21 by jodde             #+#    #+#              #
-#    Updated: 2026/02/15 16:00:55 by jodde            ###   ########.fr        #
+#    Updated: 2026/02/22 17:24:56 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #=======Project======
-TARGET := Zombie
+NAME := Zombie
 
 #=======Compiler and FLAGS=======
-CC:= g++
+CPP:= c++
 CFLAGS := -std=c++98 -Wall -Wextra -Werror -Wpedantic -Wshadow -Wconversion -Winit-self -Wuninitialized -O0 -g
 
 #=======Include and dependencies=======
 INCL:= -I.
-DEPFLAGS:= -MMD -MD
+DEPFLAGS:= -MMD -MP
 
 #=======Directories========
 OBJ_DIR := obj
@@ -32,20 +32,20 @@ DEPS:= $(OBJS:.o=.d)
 
 #=======Rules=======
 
-all : $(TARGET)
+all : $(NAME)
 
-$(TARGET) : $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@
+$(NAME) : $(OBJS)
+	$(CPP) $(CFLAGS) $(OBJS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $< -o $@
+	$(CPP) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $< -o $@
 
 clean :
 	rm -rf $(OBJ_DIR)
 
 fclean : clean
-	rm $(TARGET)
+	rm $(NAME)
 
 re : fclean all
 

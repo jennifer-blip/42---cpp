@@ -6,19 +6,19 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/15 16:23:50 by jodde             #+#    #+#              #
-#    Updated: 2026/02/15 17:29:53 by jodde            ###   ########.fr        #
+#    Updated: 2026/02/22 17:25:19 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #==========Project=========
-TARGET := lasergame
+NAME := lasergame
 
 #==========Compiler========
-CC := g++
+CPP := c++
 CFLAGS := -std=c++98 -Wall -Wextra -Wconversion -Wshadow -Winit-self -Wuninitialized -Wpedantic -Werror -O0 -g
 #==========Includes and deps==
 INCL := -I.
-DEPFLAGS := -MMD -MD
+DEPFLAGS := -MMD -MP
 
 #=========Directories=====
 OBJ_DIR := ./obj
@@ -30,20 +30,20 @@ DEPS := $(OBJS:.o=.d)
 
 #=========Rules===========
 
-all : $(TARGET)
+all : $(NAME)
 
-$(TARGET) : $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+$(NAME) : $(OBJS)
+	$(CPP) $(CFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJ_DIR)/%.o : %.cpp
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $< -o $@
+	@$(CPP) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $< -o $@
 
 clean :
 	@rm -rf $(OBJ_DIR)
 
 fclean : clean
-	@rm -f $(TARGET)
+	@rm -f $(NAME)
 
 re : fclean all
 

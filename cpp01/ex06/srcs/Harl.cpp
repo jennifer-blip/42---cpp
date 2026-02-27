@@ -6,33 +6,41 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 14:14:18 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/20 10:05:59 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/25 11:41:54 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
+#define RED  "\033[31m"
+#define RESET  "\033[0m"
 
+//Constructors and destructors
+Harl::Harl(){}	
+Harl::~Harl(){}	
+
+//Private functions
 void	Harl::debug(void)
 {
-	std::cout<<"DEBUG : Detailed information for diagnosing issues"<<std::endl;
+	std::cout<<RED<<"DEBUG :"<<RESET<<" Detailed information for diagnosing issues"<<std::endl;
 	std::cout<<"use case : Developing and troubleshooting within the test environment"<<std::endl;
 }
 void	Harl::info(void)
 {
-	std::cout<<"INFO : General operational messages"<<std::endl;
+	std::cout<<RED<<"INFO :"<<RESET<<" General operational messages"<<std::endl;
 	std::cout<<"use case : Tracking typical operations and application flow"<<std::endl;
 }
 void	Harl::warning(void)
 {
-	std::cout<<"WARNING : Potentially harmful situations"<<std::endl;
+	std::cout<<RED<<"WARNING :"<<RESET<<" Potentially harmful situations"<<std::endl;
 	std::cout<<"use case : Detecting potential and significant issues"<<std::endl;
 }
 void	Harl::error(void)
 {
-	std::cout<<"ERROR : Error events that still allow the app to continue running"<<std::endl;
+	std::cout<<RED<<"ERROR :"<<RESET<<" Error events that still allow the app to continue running"<<std::endl;
 	std::cout<<"use case : Alerting teams for critical issues that need attention"<<std::endl;
 }
 
+//Member functions
 void Harl::set_logLevel(std::string logLevel)
 {
 	if (logLevel == "DEBUG")
@@ -52,25 +60,25 @@ void Harl::complain( void )
 	{
 		case (0) :
 		{
-			for (int i=0; i<=0; i++)
+			for (int i=0; i<=3; i++)
 			(this->*funcTab[i])();
 			break ;
 		}
 		case (1) :
 		{
-			for (int i=0; i<=1; i++)
+			for (int i=1; i<=3; i++)
 			(this->*funcTab[i])();
 			break ;
 		}
 		case (2) :
 		{
-			for (int i=0; i<=2; i++)
+			for (int i=2; i<=3; i++)
 			(this->*funcTab[i])();
 			break ;
 		}
 		case (3) :
 		{
-			for (int i=0; i<=3; i++)
+			for (int i=3; i<=3; i++)
 			(this->*funcTab[i])();
 			break ;
 		}

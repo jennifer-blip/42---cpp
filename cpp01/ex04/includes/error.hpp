@@ -1,37 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   error.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/19 14:14:37 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/25 11:20:49 by jodde            ###   ########.fr       */
+/*   Created: 2026/02/25 11:50:30 by jodde             #+#    #+#             */
+/*   Updated: 2026/02/25 11:50:32 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<string>
 
-class Harl
-{
-	public :
-		enum level
-		{
-			DEBUG, INFO, WARNING, ERROR
-		};
-	private :
-		level		_logLevel;
-		void	debug(void);
-		void	info(void);
-		void	warning(void);
-		void	error(void);
-	public :
-		Harl();
-		~Harl();
-		void complain( void);
-		void set_logLevel(std::string logLevel);
-};
-
-typedef void (Harl::*HarlMemFunct)(void);
+void error(std::string msg);

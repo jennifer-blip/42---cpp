@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:51:32 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/14 19:51:55 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/22 19:34:10 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ class Zombie
         std::string _name;
     public:
         //constructors and destructor
-        Zombie(void){std::cout<<"a zombie is born"<<std::endl;};
-        Zombie(std::string Name) : _name(Name) {};
-        ~Zombie(void){std::cout<<this->_name<<" died"<<std::endl;};
+        Zombie(void);
+        Zombie(std::string Name);
+        ~Zombie(void);
 
         //accessors
         void    setName(std::string Name);

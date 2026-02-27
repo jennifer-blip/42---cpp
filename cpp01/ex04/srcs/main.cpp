@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/19 14:14:37 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/25 11:20:49 by jodde            ###   ########.fr       */
+/*   Created: 2026/02/19 09:48:48 by jodde             #+#    #+#             */
+/*   Updated: 2026/02/25 10:50:53 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#include <iostream>
-#include <string>
+#include "replace.hpp"
+#include "error.hpp"
 
-class Harl
+int main(int argc, char **argv)
 {
-	public :
-		enum level
-		{
-			DEBUG, INFO, WARNING, ERROR
-		};
-	private :
-		level		_logLevel;
-		void	debug(void);
-		void	info(void);
-		void	warning(void);
-		void	error(void);
-	public :
-		Harl();
-		~Harl();
-		void complain( void);
-		void set_logLevel(std::string logLevel);
-};
-
-typedef void (Harl::*HarlMemFunct)(void);
+	if (argc < 4)
+		return (error("ARGS: <filename> <string1> <string2>"), 1);
+	std::string s1 = argv[2];
+	std::string s2 = argv[3];
+	std::string file = argv[1];
+	if (s1.empty())
+		return (error("ARGS: <string1> should not be empty"), 1);
+	replaceString(file, s1, s2);
+	return (0);
+}

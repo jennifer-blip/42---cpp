@@ -6,15 +6,15 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/15 15:48:09 by jodde             #+#    #+#              #
-#    Updated: 2026/02/15 16:20:37 by jodde            ###   ########.fr        #
+#    Updated: 2026/02/22 17:15:45 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #========Project==================
-TARGET := main
+NAME := main
 
 #=======Compiler and flags========
-CC := g++ 
+CPP := c++ 
 CFLAGS := -std=c++98 -Wall -Wextra -Wconversion -Wshadow -Wpedantic -Winit-self -Wuninitialized -Werror -O0 -g
 
 #======Directories===============
@@ -26,19 +26,19 @@ OBJS := main.o
 
 #======Rules=====================
 
-all : $(TARGET)
+all : $(NAME)
 
-$(TARGET) : $(OBJS)
-	$(CC) $(CFLAGS) $< -o $@
+$(NAME) : $(OBJS)
+	$(CPP) $(CFLAGS) $< -o $@
 
 $(OBJS) : $(SRCS)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CPP) $(CFLAGS) -c $< -o $@
 
 clean :
 	@rm -f $(OBJS)
 
 fclean : clean
-	@rm -f $(TARGET)
+	@rm -f $(NAME)
 
 re : fclean all
 

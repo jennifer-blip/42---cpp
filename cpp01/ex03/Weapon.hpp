@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:24:46 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/15 17:48:11 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/25 11:33:46 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ class	Weapon
 	public:
 		
 	//Constructors & destructors
-		Weapon(){};
-		Weapon(std::string initType) : _type(initType){};
-		~Weapon(){};
+		Weapon();
+		Weapon(std::string initType);
+		~Weapon();
 		
 	//Accessors
 		void	setType(std::string newType);

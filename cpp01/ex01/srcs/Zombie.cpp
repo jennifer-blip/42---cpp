@@ -6,12 +6,26 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:52:20 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/15 15:43:11 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/25 11:39:34 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#define GREEN  "\033[32m"
+#define RESET  "\033[0m"
 
+//Constructors and destructor
+Zombie::Zombie(void)
+{
+    std::cout<<GREEN<<"a zombie is born"<<RESET<<std::endl;
+}
+Zombie::Zombie(std::string Name) : _name(Name) {}
+
+Zombie::~Zombie(void)
+{
+    std::cout<<GREEN<<this->_name<<" died"<<RESET<<std::endl;
+}
+//Member functions
 void   Zombie::setName(std::string Name) 
 {
     this->_name = Name;
@@ -27,17 +41,3 @@ void Zombie::announce(void) const
     std::cout<<this->getName()<<": "<<"BraiiiiiiinnnzzzZ..."<<std::endl;
 }
 
-Zombie* zombieHorde( int N, std::string name )
-{
-    Zombie  *horde = new Zombie[N];
-    int n;
-    
-    for (int i = 0; i < N; i++)
-    {
-        std::ostringstream oss;
-        n = i;
-        oss<<n + 1;
-        horde[i].setName(name + oss.str());
-    }
-    return (horde);
-}

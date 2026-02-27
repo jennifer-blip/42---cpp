@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/19 14:14:37 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/25 11:20:49 by jodde            ###   ########.fr       */
+/*   Created: 2026/02/14 18:52:20 by jodde             #+#    #+#             */
+/*   Updated: 2026/02/25 11:26:54 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#include <iostream>
-#include <string>
+#include "Zombie.hpp"
 
-class Harl
+Zombie* zombieHorde( int N, std::string name )
 {
-	public :
-		enum level
-		{
-			DEBUG, INFO, WARNING, ERROR
-		};
-	private :
-		level		_logLevel;
-		void	debug(void);
-		void	info(void);
-		void	warning(void);
-		void	error(void);
-	public :
-		Harl();
-		~Harl();
-		void complain( void);
-		void set_logLevel(std::string logLevel);
-};
-
-typedef void (Harl::*HarlMemFunct)(void);
+    Zombie  *horde = new Zombie[N];
+    int n;
+    
+    for (int i = 0; i < N; i++)
+    {
+        std::ostringstream oss;
+        n = i;
+        oss<<n + 1;
+        horde[i].setName(name + oss.str());
+    }
+    return (horde);
+}

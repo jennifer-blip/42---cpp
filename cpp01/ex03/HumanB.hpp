@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:24:17 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/15 17:47:46 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/22 19:38:54 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ class	HumanB
 {
 	private:
 		std::string _name;
-		Weapon		*_weapon = NULL;
+		Weapon		*_weapon;
 	
 		public:
 			
 		//constructors & destructors
-			HumanB(){};
-			HumanB(std::string name) : _name(name){}
-			~HumanB(){};
+			HumanB();
+			HumanB(std::string name);
+			~HumanB();
 			
 		//accessors
 			void	setName(std::string name);
@@ -34,5 +34,5 @@ class	HumanB
 			
 		//member function
 			void	attack(void);
-			void	setWeapon(Weapon& newWeapon);
+			void	setWeapon(Weapon *newWeapon);
 };

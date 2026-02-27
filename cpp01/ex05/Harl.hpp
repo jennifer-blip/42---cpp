@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 14:14:37 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/19 15:06:58 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/25 11:18:04 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ class Harl
 		void	warning(void);
 		void	error(void);
 	public :
-		Harl(){};
-		~Harl(){};
+	//Constructors and destructors
+		Harl();
+		~Harl();
+	//member function
 		void complain( std::string level );
 };
 
-typedef void (Harl::*HarlMemFunct)(void);
+// typedef void (Harl::*HarlMemFunct)(void);

@@ -6,13 +6,33 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:52:20 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/14 18:52:22 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/25 11:39:05 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#define GREEN  "\033[32m"
+#define RESET  "\033[0m"
 
+//Constructors and destructor
+Zombie::Zombie(void){}
+Zombie::Zombie(std::string Name) : _name(Name)
+{
+    std::cout<<GREEN<<this->_name<<" is born"<<RESET<<std::endl;
+}
+Zombie::~Zombie()
+{
+    std::cout<<GREEN<<this->_name<<" died"<<RESET<<std::endl;
+}
+
+//Member functions
 void Zombie::announce(void) const
 {
     std::cout<<this->getName()<<": "<<"BraiiiiiiinnnzzzZ..."<<std::endl;
 }
+
+std::string Zombie::getName(void)const 
+{
+    return(_name);
+}
+

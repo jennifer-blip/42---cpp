@@ -6,21 +6,21 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/19 14:14:05 by jodde             #+#    #+#              #
-#    Updated: 2026/02/19 14:53:53 by jodde            ###   ########.fr        #
+#    Updated: 2026/02/22 17:25:31 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 #=========Project=========
-TARGET := Harl
+NAME := Harl
 
 #=========Compiler========
-CC := g++
+CPP := c++
 CFLAGS := -std=c++98 -Wall -Wextra -Werror -Wpedantic -Wshadow -Winit-self -Wconversion -Wuninitialized -O0 -g
 
 #=========Incl. and deps===
 INCL := -I.
-DEPFLAGS := -MMD -MD
+DEPFLAGS := -MMD -MP
 
 #=========Directories=======
 OBJ_DIR := ./objs
@@ -33,20 +33,20 @@ DEPS := $(OBJS:.o=.d)
 
 #=========Rules=============
 
-all : $(TARGET)
+all : $(NAME)
 
-$(TARGET) : $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+$(NAME) : $(OBJS)
+	$(CPP) $(CFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(DEPFLAGS) $(INCL) -c $< -o $@
+	$(CPP) $(CFLAGS) $(DEPFLAGS) $(INCL) -c $< -o $@
 
 clean :
 	@rm -rf $(OBJ_DIR)
 
 fclean : clean
-	@rm -f $(TARGET)
+	@rm -f $(NAME)
 	
 re : fclean all
 

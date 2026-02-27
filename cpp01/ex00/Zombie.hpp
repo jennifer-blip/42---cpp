@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:51:32 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/14 19:10:03 by jodde            ###   ########.fr       */
+/*   Updated: 2026/02/22 19:33:09 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,11 @@ class Zombie
     private:
         std::string _name;
     public:
-        Zombie(void){};
-        Zombie(std::string Name) : _name(Name)
-        {
-            std::cout<<this->_name<<" is born"<<std::endl;
-        }
-        ~Zombie()
-        {
-            std::cout<<this->_name<<" died"<<std::endl;
-        }
+        Zombie(void);
+        Zombie(std::string Name);
+        ~Zombie();
         void    announce(void) const;
-        std::string getName(void)const {return(_name);};
+        std::string getName(void)const;
         
 };
 

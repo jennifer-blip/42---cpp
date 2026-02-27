@@ -6,46 +6,46 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/11 10:32:21 by jodde             #+#    #+#              #
-#    Updated: 2026/02/15 15:45:29 by jodde            ###   ########.fr        #
+#    Updated: 2026/02/22 19:30:13 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #=======Project======
-TARGET := Horde
+NAME := Horde
 
 #=======Compiler and FLAGS=======
-CC:= g++
+CPP:= c++
 CFLAGS := -std=c++98 -Wall -Wextra -Werror -Wpedantic -Wshadow -Wconversion -Winit-self -Wuninitialized -O0 -g
 
 #=======Include and dependencies=======
 INCL:= -I.
-DEPFLAGS:= -MMD -MD
+DEPFLAGS:= -MMD -MP
 
 #=======Directories========
 OBJ_DIR := obj
 SRC_DIR := srcs
 
 #=======Files=======
-SRCS:= $(SRC_DIR)/Zombie.cpp $(SRC_DIR)/main.cpp
-OBJS:= $(OBJ_DIR)/Zombie.o $(OBJ_DIR)/main.o
+SRCS:= $(SRC_DIR)/Zombie.cpp $(SRC_DIR)/main.cpp $(SRC_DIR)/zombieHorde.cpp
+OBJS:= $(OBJ_DIR)/Zombie.o $(OBJ_DIR)/main.o $(OBJ_DIR)/zombieHorde.o
 DEPS:= $(OBJS:.o=.d)
 
 #=======Rules=======
 
-all : $(TARGET)
+all : $(NAME)
 
-$(TARGET) : $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+$(NAME) : $(OBJS)
+	$(CPP) $(CFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $< -o $@
+	$(CPP) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $< -o $@
 
 clean :
 	@rm -rf $(OBJ_DIR)
 
 fclean : clean
-	@rm $(TARGET)
+	@rm $(NAME)
 
 re : fclean all
 
