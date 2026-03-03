@@ -6,66 +6,57 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 10:54:30 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/27 12:37:43 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/03 16:34:29 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#include "Point.hpp"
+#include "bsp.hpp"
+#include <sstream>
 
-int main( void ) 
+int main(int argc, char **argv) 
 {
-	{
-		std::cout<<RED<<"[TEST] 42 subject "<<RESET<<std::endl;
-		Fixed	a;
-		Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-		std::cout << a << std::endl;
-		std::cout << ++a << std::endl;
-		std::cout << a << std::endl;
-		std::cout << a++ << std::endl;
-		std::cout << a << std::endl;
-		std::cout << b << std::endl;
-		std::cout << Fixed::min( a, b ) << std::endl;
-	}
-	{
-		std::cout<<RED<<"[TEST] arithmetic operators"<<RESET<<std::endl;
-		Fixed a(5);
-		Fixed b(1.1f);
+    if (argc != 7)
+    {
+        std::cout << "Usage: " << argv[0]
+                  << " <Ax> <Ay> <Bx> <By> <Cx> <Cy>" << std::endl;
+        return 1;
+    }
+    float coord[6];
+    for (int i = 1; i < argc; i++)
+    {
+        std::istringstream iss(argv[i]);
+        iss >> coord[i - 1];
 
-		std::cout<<"valeur de a "<<a<<std::endl;
-		std::cout<<"valeur de b "<<b<<std::endl;
-		std::cout<<GREEN<<"multiplication a * b = "<<RESET<<a * b<<std::endl;
-		std::cout<<GREEN<<"addition a + b = "<<RESET<< a + b<<std::endl;
-		std::cout<<GREEN<<"soustraction a - b = "<<RESET<< a - b<<std::endl;
-		std::cout<<GREEN<<"division a / b = "<<RESET<<a / b<<std::endl;
-	}
-		{
-		std::cout<<RED<<"[TEST] comparison operators"<<RESET<<std::endl;
-		Fixed a(5);
-		Fixed b(1);
-		Fixed c(1);
-
-		std::cout<<"valeur de a "<<a<<std::endl;
-		std::cout<<"valeur de b "<<b<<std::endl;
-		std::cout<<GREEN<<"test 1. < operator"<<RESET<<std::endl;
-		if (a < b)
-			std::cout<<"comparison result "<<"a<b"<<std::endl;
-		else
-			std::cout<<"comparison result "<<"a>b"<<std::endl;
-		std::cout<<GREEN<<"test 2. > operator"<<RESET<<std::endl;
-		if (a > b)
-			std::cout<<"comparison result "<<"a>b"<<std::endl;
-		else
-			std::cout<<"comparison result "<<"a<b"<<std::endl;
-		std::cout<<GREEN<<"test 3. <= operator"<<RESET<<std::endl;
-		if (c <= b)
-			std::cout<<"comparison result "<<"c<b"<<std::endl;
-		else
-			std::cout<<"comparison result "<<"c>b"<<std::endl;
-		std::cout<<GREEN<<"test 4. >= operator"<<RESET<<std::endl;
-		if (c >= b)
-			std::cout<<"comparison result "<<"c>b"<<std::endl;
-		else
-			std::cout<<"comparison result "<<"c<b"<<std::endl;
-	}
-	return 0;
+        if (iss.fail() || !iss.eof())
+        {
+            std::cout << "Invalid coordinate: " << argv[i] << std::endl;
+            return 1;
+        }
+    }
+    Point A(coord[0], coord[1]);
+    Point B(coord[2], coord[3]);
+    Point C(coord[4], coord[5]);
+    while (true)
+    {
+        std::string input;
+        std::cout << "Enter a point (x y) or 'exit' to quit: ";
+        std::getline(std::cin, input);
+        if (input == "exit")
+            break;
+        std::istringstream iss(input);
+        float x, y;
+        if (!(iss >> x >> y) || !iss.eof())
+        {
+            std::cout << "Invalid input. Please enter coordinates in the format 'x y'." << std::endl;
+            continue;
+        }
+        Point P(x, y);
+        if (bsp(A, B, C, P))
+            std::cout << "Point is inside the triangle." << std::endl;
+        else
+            std::cout << "Point is outside the triangle." << std::endl;
+    }
+    return 0;
 }
