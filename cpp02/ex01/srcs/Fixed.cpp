@@ -6,87 +6,85 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 10:54:40 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/27 14:03:32 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/04 13:50:53 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "../Fixed.hpp"
 #include <cmath>
 #define GREEN "\033[32m"
 #define RESET "\033[0m"
 
-//namespace anonymous pour les fonctions d'affichage
-namespace
+// fonction d'affichage
+static void print(std::string str, bool color)
 {
-	void print(std::string str, bool color)
-	{
-		if (color)
-			std::cout<< GREEN << str << RESET << std::endl;
-		else
-			std::cout << str << std::endl;
-	}
+    if (color)
+        std::cout << GREEN << str << RESET << std::endl;
+    else
+        std::cout << str << std::endl;
 }
 
-//constructors and destructor
+// constructors and destructor
 Fixed::Fixed()
 {
-	_fixed = 0;
-	print("Default constructor called", true);
+    _fixed = 0;
+    print("Default constructor called", true);
 }
 Fixed::Fixed(int const value)
 {
-	this->_fixed = value << this->_frac;
-	print("Int constructor called", true);
+    this->_fixed = value << this->_frac;
+    print("Int constructor called", true);
 }
 
 Fixed::Fixed(float const value)
 {
-	print("Float constructor called", true);
-	this->_fixed = (int)roundf(value * (1 << this->_frac));
+    print("Float constructor called", true);
+    this->_fixed = (int)roundf(value * (1 << this->_frac));
 }
-Fixed::Fixed(Fixed const & src)
+Fixed::Fixed(Fixed const &cpy)
 {
-	print("Copy constructor called", true);
-	*this = src;
+    print("Copy constructor called", true);
+    *this = cpy;
 }
 
 Fixed::~Fixed()
 {
-	print("Destructor called", true);
+    print("Destructor called", true);
 }
 
-//operators
-Fixed& Fixed::operator=(Fixed const &rhs)
+// operators
+Fixed &Fixed::operator=(Fixed const &rhs)
 {
-	print("Copy assignment operator called", true);
-	this->_fixed = rhs.getRawBits();
-	return (*this);
+    print("Copy assignment operator called", true);
+    if (this != &rhs)
+        this->_fixed = rhs.getRawBits();
+    return (*this);
 }
 
-std::ostream& operator<<(std::ostream& output, Fixed const &fixed)
+std::ostream &operator<<(std::ostream &os, Fixed const &rhs)
 {
-	output << fixed.toFloat();
-	return (output);
+    os << rhs.toFloat();
+    return (os);
 }
-//accessors
-int Fixed::getRawBits( void ) const
+// accessors
+int Fixed::getRawBits(void) const
 {
-	print("getRawBits member function called", false);
-	return (this->_fixed);
-}
-
-void Fixed::setRawBits( int const raw )
-{
-	this->_fixed = raw;
+    print("getRawBits member function called", false);
+    return (this->_fixed);
 }
 
-//member functions
-float Fixed::toFloat( void ) const
+void Fixed::setRawBits(int const raw)
 {
-	return ((float)this->_fixed / (1 << this->_frac));
+    this->_fixed = raw;
 }
 
-int Fixed::toInt( void ) const
+// member functions
+float Fixed::toFloat(void) const
 {
-	return (this->_fixed >> this->_frac);
+    return ((float)this->_fixed / (1 << this->_frac));
+}
+
+int Fixed::toInt(void) const
+{
+    return (this->_fixed >> this->_frac);
 }

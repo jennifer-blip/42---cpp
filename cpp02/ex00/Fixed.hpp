@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 10:54:47 by jodde             #+#    #+#             */
-/*   Updated: 2026/02/27 09:12:50 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/04 13:52:16 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ class Fixed
 	public:
 	//constructors and destructor
 		Fixed();
-		Fixed(Fixed const & src);
+		Fixed(Fixed const& src);
 		~Fixed();
 	//operator
-		Fixed& operator=(Fixed const &rhs);
+		Fixed& operator=(Fixed const& rhs);
 	//accessors
 		int getRawBits( void ) const;
 		void setRawBits( int const raw );

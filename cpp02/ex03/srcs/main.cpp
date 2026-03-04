@@ -6,16 +6,17 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 10:54:30 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/03 16:34:29 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/04 15:26:08 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include "Point.hpp"
-#include "bsp.hpp"
+#include "../Includes/Fixed.hpp"
+#include "../Includes/Point.hpp"
+#include "../Includes/bsp.hpp"
 #include <sstream>
 
-int main(int argc, char **argv) 
+// version interactive
+/*int main(int argc, char **argv)
 {
     if (argc != 7)
     {
@@ -58,5 +59,29 @@ int main(int argc, char **argv)
         else
             std::cout << "Point is outside the triangle." << std::endl;
     }
+    return 0;
+}*/
+
+int main()
+{
+    Point A(0, 0);
+    Point B(0, 10);
+    Point C(5, 20);
+
+    // test points
+    Point P1(1, 2);    // inside
+    Point P2(1, 10);   // outside
+    Point P3(10, 5);   // inside
+    Point P4(0, 5);    // outside
+    Point P5(5, 5.5f); // inside float
+    Point P6(0, 0);    // outside (vertex)
+
+    std::cout << "P1 inside? " << bsp(A, B, C, P1) << std::endl;
+    std::cout << "P2 inside? " << bsp(A, B, C, P2) << std::endl;
+    std::cout << "P3 inside? " << bsp(A, B, C, P3) << std::endl;
+    std::cout << "P4 inside? " << bsp(A, B, C, P4) << std::endl;
+    std::cout << "P5 inside? " << bsp(A, B, C, P5) << std::endl;
+    std::cout << "P6 inside? " << bsp(A, B, C, P6) << std::endl;
+
     return 0;
 }
