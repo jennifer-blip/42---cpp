@@ -5,48 +5,40 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/02/15 16:23:50 by jodde             #+#    #+#              #
-#    Updated: 2026/02/15 17:29:53 by jodde            ###   ########.fr        #
+#    Created: 2026/02/27 14:27:48 by jodde             #+#    #+#              #
+#    Updated: 2026/03/03 17:06:19 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#==========Project=========
-TARGET := lasergame
-
-#==========Compiler========
-CC := g++
-CFLAGS := -std=c++98 -Wall -Wextra -Wconversion -Wshadow -Winit-self -Wuninitialized -Wpedantic -Werror -O0 -g
-#==========Includes and deps==
-INCL := -I.
-DEPFLAGS := -MMD -MD
-
-#=========Directories=====
-OBJ_DIR := ./obj
-
-#=========Sources=========
-SRCS := main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
-OBJS := $(OBJ_DIR)/main.o $(OBJ_DIR)/Weapon.o $(OBJ_DIR)/HumanA.o $(OBJ_DIR)/HumanB.o
+#================Project========
+NAME := triangle
+#================Compiler======
+C+ := c++
+CFLAGS := -Wall -Wextra -Werror -Wpedantic -Wuninitialized -Wshadow -Winit-self -Wconversion -std=c++98 -O0 -g
+#================Dependancies===
+INCL := -I./Includes
+DEPFLAGS := -MMD -MP
+#================Directories====
+SRC_DIR := ./srcs
+OBJ_DIR := ./objs
+#================Files==========
+SRCS := $(SRC_DIR)/main.cpp $(SRC_DIR)/Fixed.cpp $(SRC_DIR)/Point.cpp $(SRC_DIR)/bsp.cpp
+OBJS := $(OBJ_DIR)/main.o $(OBJ_DIR)/Fixed.o $(OBJ_DIR)/Point.o $(OBJ_DIR)/bsp.o
 DEPS := $(OBJS:.o=.d)
+#================Rules==========
+all : $(NAME)
 
-#=========Rules===========
+$(NAME): $(OBJS)
+	$(C+) $(CFLAGS) $(DEBUG) $^ -o $@
 
-all : $(TARGET)
-
-$(TARGET) : $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
-
-$(OBJ_DIR)/%.o : %.cpp
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $< -o $@
-
+	$(C+) $(CFLAGS) $(DEPFLAGS) $(INCL) -c $< -o $@
 clean :
 	@rm -rf $(OBJ_DIR)
-
 fclean : clean
-	@rm -f $(TARGET)
-
+	@rm -rf $(NAME)
 re : fclean all
-
-#=========Auto dependencies====
+#===============Auto dependencies========
 -include $(DEPS)
-.PHONY : all re fclean clean
+.PHONY : re clean fclean
