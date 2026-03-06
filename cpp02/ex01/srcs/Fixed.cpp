@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 10:54:40 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/04 13:50:53 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/06 09:44:35 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ void Fixed::setRawBits(int const raw)
 }
 
 // member functions
-float Fixed::toFloat(void) const
+float Fixed::toFloat(void) const //fonction pour recuperer la valeur reelle du nombre a virgule fixe
 {
     return ((float)this->_fixed / (1 << this->_frac));
 }
 
-int Fixed::toInt(void) const
+int Fixed::toInt(void) const //Fonction pour recuperer la partie entiere du nombre a virgule fixe
 {
     return (this->_fixed >> this->_frac);
 }

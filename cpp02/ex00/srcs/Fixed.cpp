@@ -6,13 +6,14 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 10:54:40 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/04 13:56:47 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/06 09:19:50 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Fixed.hpp"
 #define GREEN "\033[32m"
 #define RESET "\033[0m"
+
 //fonction d'affichage
 static void print(std::string str, bool color)
 {
