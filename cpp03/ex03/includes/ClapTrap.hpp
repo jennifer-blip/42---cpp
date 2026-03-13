@@ -6,20 +6,21 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 10:11:19 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/10 09:42:38 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/11 09:53:59 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
 #include <string>
+#define BROWN "\033[33m"
 #define GREEN "\033[32m"
-#define RED "\033[33m"
+#define RED "\033[31m"
 #define RESET "\033[0m"
 
 class ClapTrap
 {
-	private :
+	protected :
 		std::string	_name;
 		int			_hPoint;
 		int			_ePoint;
@@ -36,14 +37,15 @@ class ClapTrap
 		ClapTrap& operator=(ClapTrap const& src);
 	//accessors
 		std::string getName() const;
-		int	getHPoint() const;
-		int	getEPoint() const;
-		int	getDamage() const;
+		int		getHPoint() const;
+		int		getEPoint() const;
+		int		getDamage() const;
 		void	setHPoint(int amount);
 		void	setEPoint(int amount);
 		void	setDamage(int amount);
 	//member functions
-		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+		void	attack(const std::string& target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
+		int		addPoints(int var, int amount);
 };

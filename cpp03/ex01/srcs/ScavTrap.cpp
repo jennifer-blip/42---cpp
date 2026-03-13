@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 08:49:09 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/10 09:35:45 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/11 10:10:36 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void 	ScavTrap::attack(const std::string& target)
 {
 	if (getEPoint() > 0 && getHPoint() > 0)
 	{
-		setHPoint(getHPoint() - 1);
-		setEPoint(getEPoint() - 1);
+		setEPoint(addPoints(getEPoint(), -1));
 		std::cout << "Scavtrap " << getName() << " attacks " << target << " causing " << getDamage() << " points of damage!" << std::endl;
+		std::cout << "Scavtrap " << getName() << " has "<< getEPoint() << " Energy points left" << std::endl;
 	}
 	else if (getEPoint() <= 0)
 		std::cout << "Scavtrap " << getName() << "unable to attack - no energy point left" << std::endl;	

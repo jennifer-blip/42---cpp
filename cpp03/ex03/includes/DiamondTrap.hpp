@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:12:57 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/10 11:05:19 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/10 12:37:15 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ class DiamondTrap : public ScavTrap, public FragTrap
 	//Member functions
 		void	whoAmI(void);
 		void	initStats();
-		void	attack(std::string const &target);
+		using 	ScavTrap::attack;
 };

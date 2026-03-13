@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:12:41 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/10 11:11:56 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/11 09:23:09 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,18 @@ static void	print(std::string msg, bool color)
 //iniStats
 void	DiamondTrap::initStats()
 {
-	setEPoint(ScavTrap::getEPoint());
-	setHPoint(FragTrap::getHPoint());
-	setDamage(FragTrap::getDamage());
+	ScavTrap tmp;
+	setEPoint(tmp.getEPoint());
+	// setHPoint(FragTrap::getHPoint());
+	// setDamage(FragTrap::getDamage());
 }
 //Constructors and destructors:
-DiamondTrap::DiamondTrap() : ClapTrap("Default_clap_name"), ScavTrap(), FragTrap(), name("Default")
+DiamondTrap::DiamondTrap() : ClapTrap("Default_clap_name"), name("Default")
 {
 	initStats();
 	print("DiamondTrap Default Constructor called with Default ClapTrap Name", true);
 }
-DiamondTrap::DiamondTrap(std::string Name) : ClapTrap(Name + "_clap_name"), ScavTrap(), FragTrap(), name(Name)
+DiamondTrap::DiamondTrap(std::string Name) : ClapTrap(Name + "_clap_name"), name(Name)
 {
 	initStats();
 	std::cout << getName();
@@ -82,7 +83,4 @@ void	DiamondTrap::whoAmI(void)
 	std::cout << ClapTrap::getName();
 	print (" is my ClapTrap Name", false);
 }
-void	DiamondTrap::attack(std::string const &target)
-{
-	ScavTrap::attack(target);
-}
+
