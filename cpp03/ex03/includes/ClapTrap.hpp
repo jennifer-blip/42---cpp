@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 10:11:19 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/11 09:53:59 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/13 09:37:11 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ class ClapTrap
 	//member functions
 		void	attack(const std::string& target);
 		void	takeDamage(unsigned int amount);
+		void	takeDamage(void);
 		void	beRepaired(unsigned int amount);
 		int		addPoints(int var, int amount);
 };

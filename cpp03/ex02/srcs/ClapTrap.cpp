@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 10:11:50 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/11 10:09:13 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/13 09:36:15 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,22 @@ void ClapTrap::takeDamage(unsigned int amount)
 		setHPoint(addPoints(getHPoint(), (int)amount * (-1)));
 		std::cout << "ClapTrap " << getName() << " takes " << amount << " points of damage!" << " - total Hit points = " << getHPoint() << std::endl;
 	}
-	if (getEPoint() <= 0)
+	if (getHPoint() <= 0)
 		std::cout << getName() << " unable to take damage - no energy point left" << std::endl;
+}
+
+void ClapTrap::takeDamage(void)
+{
+	if (getEPoint() > 0 && getHPoint() > 0)
+	{
+		setHPoint(addPoints(getHPoint(), getDamage() * (-1)));
+		if (getHPoint() > 0)
+			std::cout << "ClapTrap " << getName() << " takes " << getDamage() << " points of damage!" << " - total Hit points = " << getHPoint() << std::endl;
+		else if (getHPoint() <= 0)
+			std::cout << getName() << " this robot is now dead!" << std::endl;
+	}
+	if (getHPoint() <= 0)
+		std::cout << getName() << " unable to take damage - this robot is already dead!" << std::endl;
 }
 void ClapTrap::beRepaired(unsigned int amount)
 {

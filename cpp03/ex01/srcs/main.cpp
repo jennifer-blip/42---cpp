@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 10:11:41 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/11 10:22:52 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/13 09:38:35 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ int main(void)
 		Case.attack("Tars");
 		std::cout << std::endl << BROWN << "CASE INHERITED FUNCTIONS FROM CLAPTRAP" << RESET << std::endl;
 		Tars.takeDamage(2);
+		Tars.takeDamage();
 		Tars.beRepaired(2);
-		Case.takeDamage(5);
+		Case.takeDamage(100);
+		Case.takeDamage();
 		Case.beRepaired(10);
 		std::cout << std::endl << BROWN << "CASE SPECIFIC FUNCTION TESTS" << RESET << std::endl;
 		Case.guardGate();

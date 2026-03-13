@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 10:11:41 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/11 09:46:58 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/13 09:34:08 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int main(void)
 		variableCheck(Tars);
 		std::cout << std::endl << BROWN << "TAKE DAMAGE FUNCTION TEST" << RESET << std::endl;
 		Tars.takeDamage(1);
+		variableCheck(Tars);
+		Tars.takeDamage();
 		variableCheck(Tars);
 		std::cout << std::endl << BROWN << "BE REPAIRED FUNCTION TEST" << RESET << std::endl;
 		Tars.beRepaired(2);
