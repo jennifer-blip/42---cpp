@@ -6,13 +6,13 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/06 10:12:19 by jodde             #+#    #+#              #
-#    Updated: 2026/03/17 15:55:31 by jodde            ###   ########.fr        #
+#    Updated: 2026/03/17 16:21:56 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 #======================Project====================
-NAME := Aanimal
+NAME := materia
 #======================Compiler===================
 C+ := c++
 CFLAGS := -Wall -Wextra -Werror -Wpedantic -Wuninitialized -Wshadow -Wno-shadow -Winit-self -Wconversion -std=c++98 -O0 -g
@@ -23,8 +23,8 @@ DEPFLAGS := -MMD -MP
 SRC_DIR := srcs
 OBJ_DIR := objs
 #======================Sources====================
-SRCS := $(SRC_DIR)/AAnimal.cpp $(SRC_DIR)/Cat.cpp $(SRC_DIR)/Dog.cpp $(SRC_DIR)/main.cpp $(SRC_DIR)/display.cpp $(SRC_DIR)/Brain.cpp 
-OBJS := $(OBJ_DIR)/AAnimal.o $(OBJ_DIR)/Cat.o $(OBJ_DIR)/Dog.o $(OBJ_DIR)/main.o $(OBJ_DIR)/display.o $(OBJ_DIR)/Brain.o 
+SRCS := $(SRC_DIR)/AMateria.cpp $(SRC_DIR)/Cure.cpp $(SRC_DIR)/Ice.cpp $(SRC_DIR)/MateriaSource.cpp $(SRC_DIR)/Character.cpp $(SRC_DIR)/main.cpp $(SRC_DIR)/display.cpp 
+OBJS := $(OBJ_DIR)/AMateria.o $(OBJ_DIR)/Cure.o $(OBJ_DIR)/Ice.o $(OBJ_DIR)/MateriaSource.o $(OBJ_DIR)/Character.o $(OBJ_DIR)/main.o $(OBJ_DIR)/display.o 
 DEPS := $(OBJ_DIR:.o=.d)
 #======================Rules======================
 all : $(NAME)

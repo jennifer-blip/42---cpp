@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/10 11:58:44 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/17 15:54:31 by jodde            ###   ########.fr       */
+/*   Created: 2026/03/10 11:58:24 by jodde             #+#    #+#             */
+/*   Updated: 2026/03/13 09:15:26 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
 #include <string>
-#include "../includes/AAnimal.hpp"
-#include "../includes/Brain.hpp"
 
-class	Cat : public AAnimal
+class	AAnimal
 {
-	private :
-		std::string 	_name;
-		Brain*	_brain;
-	public :
-	//constructors and destructors
-		Cat();
-		Cat(std::string Name);
-		Cat(Cat const& src);
-		~Cat();
-	//assignment operator
-		Cat& operator=(Cat const& src);
+	protected :
+		std::string	_type;
+	public	:
+	//Constructors and destructors
+		AAnimal();
+		AAnimal(std::string type);
+		AAnimal(AAnimal const& src);
+		virtual ~AAnimal();
+	//Assignment operator
+		AAnimal& operator=(AAnimal const& srcs);
 	//accessors
-		std::string getName(void) const;
-		void		setName(std::string Name);
-	//member function
-		void	makeSound() const;
-		void	displayIdeas() const;
+		std::string 	getType(void) const;
+		void			setType(std::string type);
+	//member functions
+		virtual void	makeSound() const = 0;
 };
+

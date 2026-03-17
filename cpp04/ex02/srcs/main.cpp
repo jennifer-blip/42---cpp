@@ -6,11 +6,11 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 12:01:35 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/13 09:17:28 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/17 15:56:42 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Animal.hpp"
+#include "../includes/AAnimal.hpp"
 #include "../includes/Brain.hpp"
 #include "../includes/Cat.hpp"
 #include "../includes/Dog.hpp"

@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 11:58:59 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/13 09:15:49 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/17 15:54:36 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <iostream>
 #include <string>
 #include "../includes/Brain.hpp"
-#include "../includes/Animal.hpp"
+#include "../includes/AAnimal.hpp"
 
 class	Dog : public AAnimal
 {

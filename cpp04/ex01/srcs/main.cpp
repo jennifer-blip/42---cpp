@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 12:01:35 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/13 09:09:32 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/17 16:44:09 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,17 @@ int	main(void)
 	{
 		display("DOG DEEPCOPY TEST", RED);
 		Dog basic;
-		basic.displayIdeas();
 		{
 			Dog tmp = basic;
-			tmp.displayIdeas();
 		}
+		basic.displayIdeas();
 	{
 		display("CAT DEEPCOPY TEST", RED);
 		Cat basic;
-		basic.displayIdeas();
 		{
 			Cat tmp = basic;
-			tmp.displayIdeas();
 		}
+		basic.displayIdeas();
 	}
 	}
 	display("END OF DEEPCOPY TEST", BROWN);

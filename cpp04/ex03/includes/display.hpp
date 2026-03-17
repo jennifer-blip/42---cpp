@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
+/*   display.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 14:51:47 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/16 17:56:00 by jodde            ###   ########.fr       */
+/*   Created: 2026/03/16 08:54:16 by jodde             #+#    #+#             */
+/*   Updated: 2026/03/16 17:14:25 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
 #include <string>
-#include "AMateria.hpp"
+#include <sstream>
 
-class AMateria;
-
-class	IMateriaSource
+enum	color
 {
-	public :
-	virtual ~IMateriaSource(void){}
-	virtual	void	learnMateria(AMateria*) = 0;
-	virtual AMateria* createMateria(std::string const& type) = 0;
+	RESET,
+	GREEN,
+	YELLOW,
+	RED,
+	BROWN,
+	BLUE,
+	MAGENTA,
+	GREY
 };
+
+void	display(std::string msg, color col);

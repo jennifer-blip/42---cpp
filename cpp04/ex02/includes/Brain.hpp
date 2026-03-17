@@ -6,14 +6,14 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 12:13:03 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/13 08:46:52 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/17 15:54:27 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
 #include <string>
-#include "../includes/Animal.hpp"
+#include "../includes/AAnimal.hpp"
 
 class	Brain
 {
