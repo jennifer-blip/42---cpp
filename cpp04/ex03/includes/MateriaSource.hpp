@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 08:12:23 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/17 16:22:26 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/17 19:58:00 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class MateriaSource : public IMateriaSource
 	private :
 		static const int	_maxSource = 4;
 	 	AMateria* 			_spellBook[_maxSource];
-		AMateria*			dump;
 
 	public :
 	//Constructors and destructors

@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 14:53:21 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/17 16:27:04 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/17 19:57:52 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class	Character : public ICharacter
 		static const int	_maxMat = 4;
 		AMateria*			_satchel[_maxMat];	
 		AMateria*			_floor[_maxMat];
-		AMateria*			_dump;
 	public :
 	//Constructors and destructors
 		Character(std::string name);

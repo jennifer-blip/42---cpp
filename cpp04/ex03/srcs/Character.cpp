@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 14:55:53 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/17 16:30:49 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/17 19:58:33 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,12 @@
 //Constructors and destructors
 Character::Character(std::string name) : _name(name)
 {
-	_dump = NULL;
 	initTabs(_satchel);
 	initTabs(_floor);
 	display(getName() + " default constructor called", BROWN);
 }
 Character::Character(Character const& src) : _name(src._name)
 {
-	_dump = NULL;
 	for (int i = 0; i < _maxMat; i++)
 	{
 		_satchel[i] = src._satchel[i] ? src._satchel[i]->clone() : NULL;
@@ -44,8 +42,6 @@ Character::~Character()
 		if (_floor[i])
 				delete _floor[i];
 		_floor[i] = NULL;
-		delete _dump;
-		_dump = NULL;
 	}
 	display(getName() + " destructor called", BROWN);
 }
@@ -83,8 +79,8 @@ void Character::equip(AMateria* m)
     {
 		if (i == _maxMat)
 		{
-			_dump = m;
 			display("unable to equip with " + m->getType() + " - The satchel is already full", RED);
+			delete m;
 			return;
 		}
         if (i < _maxMat && _satchel[i] == NULL)

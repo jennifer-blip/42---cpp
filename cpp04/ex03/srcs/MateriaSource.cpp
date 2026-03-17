@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 08:05:20 by jodde             #+#    #+#             */
-/*   Updated: 2026/03/17 16:23:44 by jodde            ###   ########.fr       */
+/*   Updated: 2026/03/17 19:59:22 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ MateriaSource::MateriaSource(void)
 {
 	for (int i = 0; i < _maxSource ; i++)
 		_spellBook[i] = NULL;
-	dump = NULL;
 	display("MateriaSource default constructor called", GREY);
 }
 
@@ -30,14 +29,12 @@ MateriaSource::MateriaSource(MateriaSource const& src)
 {
 	for (int i = 0; i < _maxSource ; i++)
 		_spellBook[i] = src._spellBook[i] ? src._spellBook[i]->clone() : NULL;
-	dump = NULL;
 	display("MateriaSource copy constructor called", GREY);
 }
 MateriaSource::~MateriaSource()
 {
 	for (int i = 0; i < _maxSource ; i++)
 		delete (_spellBook[i]);
-	delete dump;
 	display("MateriaSource destructor called", GREY);
 }
 //Assignment operator
@@ -64,8 +61,8 @@ void		MateriaSource::learnMateria(AMateria* newMateria)
 	{
 		if (i == _maxSource)
 		{
-			dump = newMateria;
 			display("unable to add " + newMateria->getType() + " - The spellBook is already full", RED);
+			delete newMateria;
 			return ;
 		}
 		if (i < _maxSource && _spellBook[i] == NULL)
