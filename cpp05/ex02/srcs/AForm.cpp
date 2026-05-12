@@ -1,72 +1,79 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 17:51:08 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/12 17:31:36 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/12 17:28:58 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Form.hpp"
+#include "../includes/AForm.hpp"
 
 static void	checkGrade(int grade)
 {
 	if (grade < 1)
-		throw (Form::GradeTooLowException(grade));
+		throw (AForm::GradeTooLowException(grade));
 	if (grade > 150)
-		throw (Form::GradeTooHighException(grade)); 
+		throw (AForm::GradeTooHighException(grade)); 
 }
 //constructors and destructors
-Form::Form(std::string Name, int SignGrade, int ExecGrade) : _name(Name), _signed(0), _signGrade(SignGrade), _execGrade(ExecGrade)
+AForm::AForm(): _name("default"), _signed(0), _signGrade(1), _execGrade(1)
+{
+	display(getName() + " Form default constructor called", BLUE);
+	std::cout << "\033[34m" << *this << "\033[0m" << std::endl;
+}
+
+AForm::AForm(std::string Name, int SignGrade, int ExecGrade) : _name(Name), _signed(0), _signGrade(SignGrade), _execGrade(ExecGrade)
 {
 	checkGrade(SignGrade);
 	checkGrade(ExecGrade);
 	display(getName() + " Form constructor called", BLUE);
+	std::cout << "\033[34m" << *this << "\033[0m" << std::endl;
 }
-Form::Form(const Form& src): _name(src._name + "_copy"), _signGrade(src._signGrade), _execGrade(src._execGrade)
+AForm::AForm(const AForm& src): _name(src._name + "_copy"), _signGrade(src._signGrade), _execGrade(src._execGrade)
 {
 	*this = src;
 	display(getName() + " Form copy constructor called", BLUE);
 }
-Form::~Form()
+AForm::~AForm()
 {
 	display(getName() + " Form destructor called", BLUE);
 }
 //assignment operator
-Form& Form::operator=(const Form& src)
+AForm& AForm::operator=(const AForm& src)
 {
 	setSigned(src.getIsSigned());
 	return (*this);
 }
 //accessors
-std::string Form::getName() const
+std::string AForm::getName() const
 {
 	return (_name);
 }
 
-bool		Form::getIsSigned() const
+bool		AForm::getIsSigned() const
 {
 	return(_signed);
 }
 
-void		Form::setSigned(bool status)
+void		AForm::setSigned(bool status)
 {
 	_signed = status;
 }
-int			Form::getSignGrade() const
+int			AForm::getSignGrade() const
 {
 	return (_signGrade);
 }
-int			Form::getExecGrade() const
+int			AForm::getExecGrade() const
 {
 	return (_execGrade);
 }
 
 //member functions		
-int	Form::beSigned(Bureaucrat& bureaucrat)
+int	AForm::beSigned(Bureaucrat& bureaucrat)
 {
 	if (getIsSigned())
 	{
@@ -79,7 +86,7 @@ int	Form::beSigned(Bureaucrat& bureaucrat)
 	}
 }
 //operator<< overload
-std::ostream &operator<<(std::ostream &os, Form const &rhs)
+std::ostream &operator<<(std::ostream &os, AForm const &rhs)
 {
 	os << rhs.getName() << ", Form required sign grade " <<  rhs.getSignGrade() <<" required execution grade " << rhs.getExecGrade() \
 	<< " - Form status: " << (rhs.getIsSigned() ? "signed" : "not signed") << std::endl;

@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:45:32 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/12 17:31:17 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/12 17:28:45 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	Bureaucrat::decrementGrade(void)
 	}
 }
 
-void	Bureaucrat::signForm(Form& form)
+void	Bureaucrat::signForm(AForm& form)
 {
 	int ret;
 	
@@ -98,8 +98,22 @@ void	Bureaucrat::signForm(Form& form)
 		else
 			display(getName() + " signed " + form.getName(), GREEN);
 	}
-	catch (Form::GradeTooLowException &e){
+	catch (AForm::GradeTooLowException &e){
 		display(getName() + " couldn't sign form " + form.getName() + " because " + e.what(), RED);
+	}
+}
+
+void Bureaucrat::executeForm(AForm &form) const
+{
+	try {
+		form.execute(*this);
+		display(getName() + " executed " + form.getName(), GREEN);
+	}
+	catch (AForm::GradeTooLowException &e){
+		display(getName() + " couldn't execute form " + form.getName() + " because " + e.what(), RED);
+	}
+	catch (AForm::GradeTooHighException &e){
+		display(getName() + " couldn't execute form " + form.getName() + " because " + e.what(), RED);
 	}
 }
 //operator << overload

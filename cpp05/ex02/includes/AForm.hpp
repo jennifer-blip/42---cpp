@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 17:50:46 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/12 13:57:01 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/12 17:13:35 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 class Bureaucrat;
 
-class Form 
+class AForm 
 {
 	private:
 		const std::string	_name;
@@ -29,11 +29,12 @@ class Form
 	
 	public:
 		//constructors and destructors
-		Form(std::string Name, int SignGrade, int ExecGrade);
-		Form(const Form& src);
-		~Form();
+		AForm();
+		AForm(std::string Name, int SignGrade, int ExecGrade);
+		AForm(const AForm& src);
+		virtual ~AForm();
 		//assignment operator
-		Form& operator=(const Form& src);
+		AForm& operator=(const AForm& src);
 		//accessors
 		std::string getName() const;
 		bool		getIsSigned() const;
@@ -42,6 +43,7 @@ class Form
 		int			getExecGrade() const;
 		//member functions
 		int beSigned(Bureaucrat& bureaucrat);
+		virtual void execute(Bureaucrat const &executor)const = 0;
 		//Exceptions
 		class GradeTooHighException : public std::exception
 		{
@@ -65,4 +67,4 @@ class Form
 		};
 };
 
-std::ostream &operator<<(std::ostream &os, Form const &rhs);
+std::ostream &operator<<(std::ostream &os, AForm const &rhs);
