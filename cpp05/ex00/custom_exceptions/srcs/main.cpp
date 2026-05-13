@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:45:38 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/11 17:52:09 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/13 15:52:16 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,35 @@ int	main(int argc, char **argv)
 		display("ERROR - invalid args : enter name and grade [1-150] of the bureaucrat", RED);
 		return (0);
 	}
-	try {
+	display("===Creating bureaucrat name===", BROWN);
+	// try {
 		Bureaucrat a(argv[1], grade);
-		std::cout << a;
+		display("===Incrementing grade===", BROWN);
 		a.incrementGrade();
+		display("===Incrementing grade===", BROWN);
+		a.incrementGrade();
+		display("===Decrementing grade===", BROWN);
 		a.decrementGrade();
+		display("===Decrementing grade===", BROWN);
 		a.decrementGrade();
-	}
-	catch (Bureaucrat::GradeTooLowException &e){
-		std::cout << "Exception caught: " << e.what()  << " Value = " << e.getValue() << std::endl ;
-	}
-	catch (Bureaucrat::GradeTooHighException &e){
-		std::cout << "Exception caught: " << e.what()  << " Value = " << e.getValue() << std::endl ;
-	}	
+		display("===Incrementing grade===", BROWN);
+		a.incrementGrade();
+	// }
+	// catch (Bureaucrat::GradeTooLowException &e){
+	// 	std::cout << "Exception caught: " << e.what()  << " Value = " << e.getValue() << std::endl ;
+	// }
+	// catch (Bureaucrat::GradeTooHighException &e){
+	// 	std::cout << "Exception caught: " << e.what()  << " Value = " << e.getValue() << std::endl ;
+	// }	
+	display("===Copy constructor test===", BROWN);
+	Bureaucrat b = a;
+	display("===Default constructor test===", BROWN);
+	Bureaucrat c;
+	display("===Decrementing bureaucrat c grade===", BROWN);
+	c.decrementGrade();
+	display("===Assignment operator test===", BROWN);
+	c = b;
+	display("===Incrementing bureaucrat c grade===", BROWN);
+	c.incrementGrade();
 	return 0;
 }

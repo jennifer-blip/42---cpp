@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:45:32 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/11 17:52:01 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/13 15:46:40 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,35 @@ void checkValue(int grade)
 	if (grade > 150)
 		throw (Bureaucrat::GradeTooHighException(grade)); 
 }
+//Constructors and destructors
+
+Bureaucrat::Bureaucrat(): _name("default"), _grade(150)
+{
+	display(getName() + " Bureaucrat constructor called", BLUE);
+	std::cout << *this;
+}
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-	checkValue(grade);
-	_grade = grade;
-	display(getName() + " Bureaucrat constructor called", BLUE);
+	try
+	{
+		checkValue(grade);
+		_grade = grade;
+		display(getName() + " Bureaucrat constructor called", BLUE);
+		std::cout << *this;
+	}
+	catch (Bureaucrat::GradeTooLowException &e){
+		std::cout << "Exception caught: " << e.what()  << " Value = " << e.getValue() << std::endl ;
+	}
+	catch (Bureaucrat::GradeTooHighException &e){
+		std::cout << "Exception caught: " << e.what()  << " Value = " << e.getValue() << std::endl ;
+	}
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const& src): _name(src.getName() + "_copy")
 {
 	*this = src;
 	display(getName() + " Bureaucrat Copy constructor called", BLUE);
+	std::cout << *this;
 }
 Bureaucrat::~Bureaucrat()
 {
@@ -41,7 +59,8 @@ Bureaucrat::~Bureaucrat()
 Bureaucrat &Bureaucrat::operator= (Bureaucrat const& src)  
 {
 	_grade = src.getGrade();
-	return (*this);
+	std::cout << *this;
+	return (*this);	
 }
 //accessors
 int			Bureaucrat::getGrade(void) const
@@ -75,7 +94,7 @@ void	Bureaucrat::decrementGrade(void)
 	try {
 		checkValue(_grade + 1);
 		_grade++;
-		display("Dear " + getName() + " you can do better, keep going on! ", BROWN);
+		display("Dear " + getName() + " you can do better, keep going on! ", RED);
 		std::cout << *this;
 	}
 	catch (Bureaucrat::GradeTooLowException &e){

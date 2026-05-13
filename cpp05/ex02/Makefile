@@ -6,7 +6,7 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/08 19:43:19 by jodde             #+#    #+#              #
-#    Updated: 2026/05/12 17:24:34 by jodde            ###   ########.fr        #
+#    Updated: 2026/05/12 17:53:40 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ clean :
 	@rm -rf $(OBJ_DIR)
 fclean : clean
 	@rm -rf $(NAME)
+	@rm -rf *_shrubbery
 re : fclean all
 #=====================Auto dependencies===========
 - include : $(DEPS)
