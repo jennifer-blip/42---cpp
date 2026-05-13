@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:45:41 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/12 16:50:37 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/13 16:28:05 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class Bureaucrat
 		
 	public:
 		//conctructors and destructors
+		Bureaucrat();
 		Bureaucrat(std::string name, int grade);
 		Bureaucrat(Bureaucrat const& src);
 		~Bureaucrat();

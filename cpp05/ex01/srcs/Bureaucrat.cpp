@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:45:32 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/12 17:31:17 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/13 17:48:51 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,24 @@
 
 static void checkValue(int grade)
 {
-	if (grade < 1)
-		throw (Bureaucrat::GradeTooLowException(grade));
 	if (grade > 150)
+		throw (Bureaucrat::GradeTooLowException(grade));
+	if (grade < 1)
 		throw (Bureaucrat::GradeTooHighException(grade)); 
+}
+//Constructors and destructors
+
+Bureaucrat::Bureaucrat(): _name("default"), _grade(150)
+{
+	display(getName() + " Bureaucrat constructor called", BLUE);
+	std::cout << *this;
 }
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
 	checkValue(grade);
 	_grade = grade;
 	display(getName() + " Bureaucrat constructor called", BLUE);
+	std::cout << *this;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const& src): _name(src.getName() + "_copy")
@@ -41,7 +49,8 @@ Bureaucrat::~Bureaucrat()
 Bureaucrat &Bureaucrat::operator= (Bureaucrat const& src)  
 {
 	_grade = src.getGrade();
-	return (*this);
+	std::cout << *this;
+	return (*this);	
 }
 //accessors
 int			Bureaucrat::getGrade(void) const
@@ -53,7 +62,7 @@ std::string	Bureaucrat::getName(void) const
 	return (_name);
 }
 
-//member functions
+//increment and decrement memeber functions
 void	Bureaucrat::incrementGrade(void)
 {
 	try {
@@ -75,11 +84,11 @@ void	Bureaucrat::decrementGrade(void)
 	try {
 		checkValue(_grade + 1);
 		_grade++;
-		display("Dear " + getName() + " you can do better, keep going on! ", BROWN);
+		display("Dear " + getName() + " you can do better, keep going on! ", RED);
 		std::cout << *this;
 	}
 	catch (Bureaucrat::GradeTooLowException &e){
-		std::cout << "Exception caught" << e.what() << " Value = " << e.getValue() << std::endl;
+		std::cout << "Exception caught: " << e.what() << " Value = " << e.getValue() << std::endl;
 	}
 	catch (Bureaucrat::GradeTooHighException &e){
 		std::cout << "Exception caught: " << e.what()  << " Value = " << e.getValue() << std::endl ;
@@ -94,7 +103,7 @@ void	Bureaucrat::signForm(Form& form)
 		ret = form.beSigned(*this);
 		if (ret)
 			display (getName() + " couldn't sign form " \
-		+ getName() + " because " + ", form is already signed.", RED);
+		+ form.getName() + " because " + ", form is already signed.", RED);
 		else
 			display(getName() + " signed " + form.getName(), GREEN);
 	}

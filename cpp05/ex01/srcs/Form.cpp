@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 17:51:08 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/12 17:31:36 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/13 17:06:14 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	checkGrade(int grade)
 {
-	if (grade < 1)
-		throw (Form::GradeTooLowException(grade));
 	if (grade > 150)
+		throw (Form::GradeTooLowException(grade));
+	if (grade < 1)
 		throw (Form::GradeTooHighException(grade)); 
 }
 //constructors and destructors
@@ -73,7 +73,7 @@ int	Form::beSigned(Bureaucrat& bureaucrat)
 		return (1);
 	}
 	else{
-		checkGrade(getSignGrade() - bureaucrat.getGrade() + 1);
+		checkGrade(bureaucrat.getGrade() - getSignGrade() + 150);
 		setSigned(1);
 		return (0);
 	}

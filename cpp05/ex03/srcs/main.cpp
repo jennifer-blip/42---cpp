@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 19:45:38 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/13 13:16:51 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/13 17:52:16 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int	main(void)
 	Intern intern;
 	
 	display("====Testing INTERN FORM CREATION====", BROWN);
-	display("=PresidentialPardonForm(25)=", BROWN);
+	display("=PresidentialPardonForm(sign 25, exec 5)=", BROWN);
 	AForm *a = intern.makeForm("PresidentialPardon", "all TIG"); 
-	display("=RobotomyRequestForm(72)=", BROWN);
+	display("=RobotomyRequestForm(sign 72, exec 45)=", BROWN);
 	AForm *b = intern.makeForm("RobotomyRequest", "Xavier Niel");
-	display("=ShrubberyCreationForm(145)=", BROWN);
+	display("=ShrubberyCreationForm(sign 145, exec 137)=", BROWN);
 	AForm *c = intern.makeForm("ShrubberyCreation", "Home");
 	
 	display("====Testing FORM SIGNATURE AUTHORIZATION====", BROWN);

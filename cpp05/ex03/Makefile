@@ -6,13 +6,13 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/08 19:43:19 by jodde             #+#    #+#              #
-#    Updated: 2026/05/13 12:30:14 by jodde            ###   ########.fr        #
+#    Updated: 2026/05/13 17:49:13 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 #======================Project====================
-NAME := bureaucrat
+NAME := intern
 #======================Compiler===================
 C+ := c++
 CFLAGS := -Wall -Wextra -Werror -Wpedantic -Wuninitialized -Wshadow -Winit-self -Wconversion -std=c++98 -O0 -g

@@ -15,7 +15,7 @@
 
 static void	checkGrade(int grade)
 {
-	if (grade < 0)
+	if (grade > 150)
 		throw (AForm::GradeTooLowException(grade));
 }
 //constructors and destructors
@@ -50,7 +50,7 @@ std::string ShrubberyCreationForm::getTarget() const
 //member functions		
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	checkGrade(getExecGrade() - executor.getGrade() + 1);
+	checkGrade(executor.getGrade() - getExecGrade() + 150);
 	if (getIsSigned())
 	{
 		std::ofstream	outfile((getTarget() + "_shrubbery").c_str());
@@ -66,7 +66,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 			outfile << "  _ -  | |   -_" << std::endl;
 			outfile << "      // \\\\" << std::endl;
 			outfile.close();
-			display("A shrubbery has been created", GREEN);
+			display("A shrubbery file has been created, check the current directory", GREEN);
 		}
 		else
 			display("Error: could not create file", RED);

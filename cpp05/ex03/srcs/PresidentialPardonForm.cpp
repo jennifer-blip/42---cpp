@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 14:36:38 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/12 17:49:32 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/13 17:44:56 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	checkGrade(int grade)
 {
-	if (grade < 0)
+	if (grade > 150)
 		throw (AForm::GradeTooLowException(grade));
 }
 //constructors and destructors
@@ -49,7 +49,7 @@ std::string PresidentialPardonForm::getTarget() const
 
 void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	checkGrade(getExecGrade() - executor.getGrade() + 1);
+	checkGrade(executor.getGrade() - getExecGrade() + 150);
 	if (getIsSigned())
 	{
 		display (getTarget() + " has been pardoned by Zaphod Beeblebrox", GREEN);

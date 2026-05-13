@@ -14,7 +14,7 @@
 
 static void	checkGrade(int grade)
 {
-	if (grade < 0)
+	if (grade > 150)
 		throw (AForm::GradeTooLowException(grade));
 }
 //constructors and destructors
@@ -51,7 +51,7 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	static int	count = 0;
 
-	checkGrade(getExecGrade() - executor.getGrade() + 1);
+	checkGrade(executor.getGrade() - getExecGrade() + 150);
 	if (getIsSigned())
 	{
 		display ("...some drilling noise...", GREEN);
