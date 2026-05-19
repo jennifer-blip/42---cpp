@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 11:34:03 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/19 20:56:39 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/19 23:09:06 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	display(std::string msg, color col)
 		{
 			std::cout << "\033[34m" << msg << "\033[0m" << std::endl;
 			break;
-		}		
+		}
+		case (RESET):
+			std::cout << "\033[0m" << msg << std::endl;
+			break;
 		case (NONE):
 			std::cout << msg << std::endl;
 	}
@@ -62,12 +65,20 @@ void	displayDouble(double input)
 
 void	displaySpecial(env *inputType)
 {
+	if (inputType->PINF || inputType->PINFF)
+	{
+		display("char : Impossible", NONE);
+		display("int : Impossible", NONE);
+		display("float : +inff", NONE);
+		display("double : +inf", NONE);
+		return;
+	}
 	if (inputType->PINF || inputType->MINF || inputType->PINFF || inputType->MINFF)
 	{
 		display("char : Impossible", NONE);
-		display((inputType->PINF) ? "int : +inf" : "float : -inf", NONE);
-		display((inputType->PINFF) ? "float : +inff" : "float : -inff", NONE);
-		display((inputType->PINF) ? "double : +inf" : "double : -inf", NONE);
+		display("int : Impossible", NONE);
+		display("float : -inff", NONE);
+		display("double : -inf", NONE);
 		return;
 	}
 	if (inputType->NAN || inputType->NANF)
