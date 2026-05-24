@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   display.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/18 14:46:27 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/18 14:52:32 by jodde            ###   ########.fr       */
+/*   Created: 2026/03/11 11:33:36 by jodde             #+#    #+#             */
+/*   Updated: 2026/05/11 21:00:59 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
 #include <string>
-#include <cstdint>
-#include "../includes/data.hpp"
 
-class Serializer{
-
-	private:
-		Serializer();
-		Serializer(Serializer const& src);
-		~Serializer();
-		Serializer& operator=(Serializer const& src);
-	
-	public:
-		static uintptr_t serialize(Data* ptr);
-		static Data* deserialize(uintptr_t raw);
+enum color
+{
+	RESET,
+	RED,
+	BROWN,
+	GREEN,
+	BLUE
 };
+
+void	display(std::string msg, color col);
+

@@ -23,8 +23,8 @@ DEPFLAGS := -MMD -MP
 SRC_DIR := srcs
 OBJ_DIR := objs
 #======================Sources====================
-SRCS := $(SRC_DIR)/ScalarConverter.cpp $(SRC_DIR)/converters.cpp$ $(SRC_DIR)/parseType.cpp (SRC_DIR)/main.cpp $(SRC_DIR)/display.cpp
-OBJS := $(OBJ_DIR)/ScalarConverter.o $(OBJ_DIR)/converters.o $(OBJ_DIR)/parseType.o $(OBJ_DIR)/main.o $(OBJ_DIR)/display.o
+SRCS := $(SRC_DIR)/Serializer.cpp $(SRC_DIR)/display.cpp $(SRC_DIR)/main.cpp
+OBJS := $(OBJ_DIR)/Serializer.o $(OBJ_DIR)/display.o $(OBJ_DIR)/main.o
 DEPS := $(OBJ_DIR:.o=.d)
 #======================Rules======================
 all : $(NAME)

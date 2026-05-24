@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,18 +13,11 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <cstdint>
-#include "../includes/data.hpp"
 
-class Serializer{
-
-	private:
-		Serializer();
-		Serializer(Serializer const& src);
-		~Serializer();
-		Serializer& operator=(Serializer const& src);
-	
-	public:
-		static uintptr_t serialize(Data* ptr);
-		static Data* deserialize(uintptr_t raw);
+class Data
+{
+    public:
+        std::string s1;
+        int n;
+        std::string s2;
 };
