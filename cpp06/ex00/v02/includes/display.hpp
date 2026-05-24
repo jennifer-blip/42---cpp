@@ -15,7 +15,10 @@
 #include <string>
 #include <iomanip> //std:fixed, std::setprecision
 #include "../includes/ScalarConverter.hpp"
+#include "../includes/Scalar.hpp"
 #include "../includes/env.hpp"
+
+class Scalar;
 
 enum color
 {
@@ -32,4 +35,5 @@ void	displayChar(char input);
 void	displayInt(int input);
 void	displayFloat(float input);
 void	displayDouble(double input);
-void	displaySpecial(env *inputType);
+void	displayScalar(Scalar *scalar);
+void	displaySpecial(std::string input);

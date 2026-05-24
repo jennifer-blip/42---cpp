@@ -29,3 +29,4 @@ class Scalar {
 		virtual void	displayAsFloat() const = 0;
 		virtual void	displayAsDouble() const = 0;
 };
+

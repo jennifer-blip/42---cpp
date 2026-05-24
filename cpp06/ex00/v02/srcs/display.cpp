@@ -63,9 +63,17 @@ void	displayDouble(double input)
 	std::cout << std::fixed << std::setprecision(1) << "double : " << input << std::endl;
 }
 
-void	displaySpecial(env *inputType)
+void	displayScalar(Scalar *scalar)
 {
-	if (inputType->PINF || inputType->PINFF)
+	scalar->displayAsChar();
+	scalar->displayAsInt();
+	scalar->displayAsFloat();
+	scalar->displayAsDouble();
+}	
+
+void	displaySpecial(std::string input)
+{
+	if (input == "+inf" || input == "+inff")
 	{
 		display("char : Impossible", NONE);
 		display("int : Impossible", NONE);
@@ -73,7 +81,7 @@ void	displaySpecial(env *inputType)
 		display("double : +inf", NONE);
 		return;
 	}
-	if (inputType->PINF || inputType->MINF || inputType->PINFF || inputType->MINFF)
+	if (input == "-inf" || input == "-inff")
 	{
 		display("char : Impossible", NONE);
 		display("int : Impossible", NONE);
@@ -81,7 +89,7 @@ void	displaySpecial(env *inputType)
 		display("double : -inf", NONE);
 		return;
 	}
-	if (inputType->NAN || inputType->NANF)
+	if (input == "nan" || input == "nanf")
 	{
 		display("char : Impossible", NONE);
 		display("int : Impossible", NONE);

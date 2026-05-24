@@ -30,64 +30,63 @@ ScalarConverter::~ScalarConverter(void){ }
 
 ScalarConverter	&ScalarConverter::operator=(ScalarConverter const &rhs){ (void)rhs; return *this;}
 
-static void	createScalar(std::string input, env *inputType)
+static Scalar*	createScalar(std::string input, env *inputType, bool *isScalar)
 {
+	
 	switch(inputType->value)
 	{
 		case (0) :
 		{
 			Scalar *scalar = new CharValue(input);
-			scalar->displayAsChar();
-			scalar->displayAsInt();
-			scalar->displayAsFloat();
-			scalar->displayAsDouble();
-			delete scalar;
+			return scalar;
 			break;
 		}
 		case (1) :
 		{
 			Scalar *scalar = new IntValue(input);
-			scalar->displayAsChar();
-			scalar->displayAsInt();
-			scalar->displayAsFloat();
-			scalar->displayAsDouble();
-			delete scalar;
+			return scalar;
 			break;
 		}
 		case (2) :
 		{
 			Scalar *scalar = new FloatValue(input);
-			scalar->displayAsChar();
-			scalar->displayAsInt();
-			scalar->displayAsFloat();
-			scalar->displayAsDouble();
-			delete scalar;
+			return scalar;
 			break;
 		}
 		case (3) :
 		{
 			Scalar *scalar = new DoubleValue(input);
-			scalar->displayAsChar();
-			scalar->displayAsInt();
-			scalar->displayAsFloat();
-			scalar->displayAsDouble();
-			delete scalar;
+			return scalar;
 			break;
 		}
 		case (4) :
 		{
-			displaySpecial(inputType);
+			*isScalar = false;
+			return NULL;
 			break;
 		}
 		default :
+		{	
 			display("Invalid input", RED);
+			return NULL;
+		}
 	}
+	
 }
 
 void ScalarConverter::convert(const std::string str)
 {
 	env inputType;
+	Scalar *scalar = NULL;
+	bool isScalar = true;
 
 	parseType(str, &inputType);
-	createScalar(str, &inputType);
+	scalar = createScalar(str, &inputType, &isScalar);
+	if (isScalar && scalar != NULL)
+	{
+		displayScalar(scalar);
+		delete scalar;
+	}
+	else
+		displaySpecial(str);
 }

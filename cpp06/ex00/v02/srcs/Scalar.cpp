@@ -16,3 +16,4 @@ Scalar::Scalar(){}
 Scalar::Scalar(Scalar const& src){ (void)src;}
 Scalar::~Scalar(){}
 Scalar& Scalar::operator=(Scalar const& src){(void)src; return(*this);}
+

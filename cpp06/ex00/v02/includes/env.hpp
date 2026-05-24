@@ -23,10 +23,4 @@ typedef struct s_env
 		INVALID
 	};
 	type	value;
-	bool	MINFF;
-	bool	MINF;
-	bool	PINF;
-	bool	PINFF;
-	bool	NAN;
-	bool	NANF;
 }env;

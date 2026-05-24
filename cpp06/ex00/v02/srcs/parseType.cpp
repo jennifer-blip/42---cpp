@@ -15,67 +15,17 @@
 #include <ctype.h>
 #include "../includes/ScalarConverter.hpp"
 
-void	initSpecial(env *inputType)
-{
-	inputType->PINFF = false;
-	inputType->PINF = false;
-	inputType->MINFF = false;
-	inputType->MINF = false;
-	inputType->NAN = false;
-	inputType->NANF = false;
-}
-
-
-int	isSpecial(const std::string& input, env *inputType)
-{
-	initSpecial(inputType);
-	if (input == "+inf")
-	{
-		inputType->value = env::SPECIAL;
-		inputType->PINF = true;
-		return (1);
-	} 
-	if (input == "-inf")
-	{
-		inputType->value = env::SPECIAL;
-		inputType->MINF = true;
-		return (1);
-	}
-	if (input == "+inff")
-	{
-		inputType->value = env::SPECIAL;
-		inputType->PINFF = true;
-		return (1);
-	} 
-	if (input == "-inff")
-	{
-		inputType->value = env::SPECIAL;
-		inputType->MINFF = true;
-		return (1);
-	} 
-	if (input == "nan")
-	{
-		inputType->value = env::SPECIAL;
-		inputType->NAN = true;
-		return (1);
-	}
-	if (input == "nanf")
-	{
-		inputType->value = env::SPECIAL;
-		inputType->NANF = true;	
-		return (1);
-	}
-	return (0);
-}
 
 void parseType(const std::string& input, env *inputType)
 {
 	size_t	i = 0;
 	bool	hasDot = false;
 	bool	hasF = false;
-	
-	if (isSpecial(input, inputType))
+	if (input == "nan" || input == "nanf" || input == "+inf" || input == "+inff" || input == "-inf" || input == "-inff")
+	{
+		inputType->value = env::SPECIAL;
 		return;
+	}
 	if (input[i] == '+' || input[i] == '-')
 		i++;
 	if (input.length() == 1 && !std::isdigit(input[0]))
