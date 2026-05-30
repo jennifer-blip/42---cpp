@@ -6,12 +6,13 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 21:44:36 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/30 17:58:05 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/30 18:19:55 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <stack>
+#include <deque>
 
 enum color
 {
@@ -22,20 +23,21 @@ enum color
 	BLUE
 };
 
-template <typename T>
-class MutantStack : public std::stack<T>
+template <typename T, typename Container = std::deque<T> >
+class MutantStack : public std::stack<T, Container>
 {
 	public:
 	
-		MutantStack() : std::stack<T>() {};
-		MutantStack(MutantStack const & src): std::stack<T>(src) {};
+		MutantStack() : std::stack<T, Container>() {};
+		explicit MutantStack(Container const& cont): std::stack<T, Container>(cont) {};
+		MutantStack(MutantStack const & src): std::stack<T, Container>(src) {};
 		~MutantStack(){};
-		MutantStack& operator=(MutantStack const& src) {std::stack<T>::operator=(src); return(*this);};
+		MutantStack& operator=(MutantStack const& src) {std::stack<T, Container>::operator=(src); return(*this);};
 		
-		typedef typename std::stack<T>::container_type::iterator 				iterator;
-		typedef typename std::stack<T>::container_type::const_iterator			const_iterator;
-		typedef typename std::stack<T>::container_type::reverse_iterator		reverse_iterator;
-		typedef typename std::stack<T>::container_type::const_reverse_iterator	const_reverse_iterator;
+		typedef typename std::stack<T, Container>::container_type::iterator 				iterator;
+		typedef typename std::stack<T, Container>::container_type::const_iterator			const_iterator;
+		typedef typename std::stack<T, Container>::container_type::reverse_iterator		reverse_iterator;
+		typedef typename std::stack<T, Container>::container_type::const_reverse_iterator	const_reverse_iterator;
 		
 		iterator begin() {return (this->c.begin());}
 		iterator end()	{return (this->c.end());}

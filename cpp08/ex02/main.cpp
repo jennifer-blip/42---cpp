@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 21:43:13 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/30 17:55:55 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/30 18:26:40 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,16 @@ void	display(std::string msg, color col)
 	}
 }
 
-template <typename T>
-void	displayMutant(MutantStack<T>& mutant)
+template <typename T, typename Container>
+void	displayMutant(MutantStack<T, Container>& mutant)
 {
-	typename MutantStack<T>::iterator it = mutant.begin();
-	typename MutantStack<T>::iterator ite = mutant.end();
+	typename MutantStack<T, Container>::iterator it = mutant.begin();
+	typename MutantStack<T, Container>::iterator ite = mutant.end();
+	if (it == ite)
+	{
+		display("stack is empty", RED);
+		return ;
+	}
 	while (it != ite)
 	{
 		std::cout << *it << " ";
@@ -114,8 +119,9 @@ int main()
 		display("display all elements of the stack copy - MY FUNCTION", GREEN);
 		displayStack(s);
 	}
+	display("/////////MY OWN TESTS", BROWN);
 	{
-		display("/////////MY OWN TESTS", BROWN);
+		display("Create a MutantStack with a std::vector as container", GREEN);
 		std::vector<int> v;
 		srand(time(NULL));
 		for (int i=0; i < 500; i++)
@@ -123,8 +129,33 @@ int main()
 			int value = rand ();
 			v.push_back(value);
 		}
-		MutantStack<int> mstack(v);
-		displayMutant(v);
+		MutantStack<int, std::vector<int> > mstack(v);
+		display("Display all elements of the MutantStack", GREEN);
+		displayMutant(mstack);
+		display("Empty all elements of the MutantStack", GREEN);
+		while (!mstack.empty())
+			mstack.pop();
+		display("Display all elements of the MutantStack", GREEN);
+		displayMutant(mstack);
+	} 
+	{
+		display("Create a MutantStack with a std::list as container", GREEN);
+		std::list<std::string> l;
+		for (int i=0; i < 40; i++)
+		{
+			std::ostringstream oss;
+			oss << "string_" << i;
+			std::string value = oss.str();
+			l.push_back(value);
+		}
+		MutantStack<std::string, std::list<std::string> > mstack(l);
+		display("Display all elements of the MutantStack", GREEN);
+		displayMutant(mstack);
+		display("Empty all elements of the MutantStack", GREEN);
+		while (!mstack.empty())
+			mstack.pop();
+		display("Display all elements of the MutantStack", GREEN);
+		displayMutant(mstack);
 	} 
 	return 0; 
 }
