@@ -15,7 +15,7 @@
 NAME := span
 #======================Compiler===================
 C+ := c++
-CFLAGS := -Wall -Wextra -Werror -Wpedantic -Wuninitialized -Wshadow -Winit-self -Wconversion -std=c++98 -O0 -g
+CFLAGS := -Wall -Wextra -Werror -Wpedantic -Wuninitialized -Wshadow -Winit-self -std=c++98 -O0 -g
 #======================Dependencies================
 INCL := -I./
 DEPFLAGS := -MMD -MP

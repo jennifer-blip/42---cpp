@@ -44,6 +44,7 @@ class   Span
         Span& operator=(Span const & rhs);
         //accessors
         unsigned int    getMax(void) const;
+        unsigned int    getSize(void) const;
         //member functions
         void    addNumber(int number);
         void    addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);

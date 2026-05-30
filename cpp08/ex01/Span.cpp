@@ -65,6 +65,9 @@ Span& Span::operator=(Span const & rhs)
 unsigned int Span::getMax(void) const
 { return (_max); }
 
+unsigned int    Span::getSize(void) const
+{ return (this->_vec.size()); }
+
 //member functions
 void Span::addNumber(int number)
 {
