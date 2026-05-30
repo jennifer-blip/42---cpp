@@ -6,7 +6,7 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/08 19:43:19 by jodde             #+#    #+#              #
-#    Updated: 2026/05/29 22:23:07 by jodde            ###   ########.fr        #
+#    Updated: 2026/05/30 13:02:55 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,17 +20,16 @@ CFLAGS := -Wall -Wextra -Werror -Wpedantic -Wuninitialized -Wshadow -Winit-self 
 INCL := -I./includes
 DEPFLAGS := -MMD -MP
 #======================Directories================
-SRC_DIR := srcs
 OBJ_DIR := objs
 #======================Sources====================
-SRCS := $(SRC_DIR)/main.cpp
+SRCS := ./main.cpp
 OBJS := $(OBJ_DIR)/main.o
 DEPS := $(OBJ_DIR:.o=.d)
 #======================Rules======================
 all : $(NAME)
 $(NAME) : $(OBJS)
 	$(C+) $(CFLAGS) $^ -o $@
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
+$(OBJ_DIR)/%.o : ./%.cpp
 	@mkdir -p $(OBJ_DIR)
 	$(C+) $(CFLAGS) $(INCL) $(DEPFLAGS) -c $^ -o $@
 clean :
