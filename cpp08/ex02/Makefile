@@ -6,7 +6,7 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/08 19:43:19 by jodde             #+#    #+#              #
-#    Updated: 2026/05/30 12:54:21 by jodde            ###   ########.fr        #
+#    Updated: 2026/05/30 17:56:37 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME := MutantStack
 #======================Compiler===================
 C+ := c++
-CFLAGS := -Wall -Wextra -Werror -Wpedantic -Wuninitialized -Wshadow -Winit-self -Wconversion -std=c++98 -O0 -g
+CFLAGS := -Wall -Wextra -Werror -Wpedantic -Wuninitialized -Wshadow -Winit-self -std=c++98 -O0 -g
 #======================Dependencies================
 INCL := -I./includes
 DEPFLAGS := -MMD -MP

@@ -6,12 +6,21 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 21:44:36 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/30 12:51:43 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/30 17:58:05 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <stack>
+
+enum color
+{
+	RESET,
+	RED,
+	BROWN,
+	GREEN,
+	BLUE
+};
 
 template <typename T>
 class MutantStack : public std::stack<T>
