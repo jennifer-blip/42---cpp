@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:33:36 by jodde             #+#    #+#             */
-/*   Updated: 2026/05/25 21:00:59 by jodde            ###   ########.fr       */
+/*   Updated: 2026/05/29 22:23:27 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <iostream>
 #include <algorithm>
 #include <stdexcept>
-#include "../includes/display.hpp"
 
 template <typename T>
 typename T::iterator easyfind(T& container, int value)
