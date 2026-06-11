@@ -6,7 +6,7 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/08 19:43:19 by jodde             #+#    #+#              #
-#    Updated: 2026/06/03 12:32:40 by jodde            ###   ########.fr        #
+#    Updated: 2026/06/11 16:51:19 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ DEPFLAGS := -MMD -MP
 #======================Directories================
 OBJ_DIR := objs
 #======================Sources====================
-SRCS := ./main.cpp
-OBJS := $(OBJ_DIR)/main.o
+SRCS := ./BitcoinExchange.cpp ./main.cpp
+OBJS := $(OBJ_DIR)/main.o $(OBJ_DIR)/BitcoinExchange.o
 DEPS := $(OBJ_DIR:.o=.d)
 #======================Rules======================
 all : $(NAME)
