@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 12:26:25 by jodde             #+#    #+#             */
-/*   Updated: 2026/06/11 21:41:56 by jodde            ###   ########.fr       */
+/*   Updated: 2026/06/12 20:26:42 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	BitcoinExchange::calcBtc(const std::string& filename)
 			std::map <std::string, double>::iterator it = _exchangeRate.lower_bound(currentPair.first);
 			if (it == _exchangeRate.end())
 				--it;
-			std::cout << currentPair.first << " => " << currentPair.second * it->second << std::endl;
+			std::cout << currentPair.first << " => " << currentPair.second << " = " << currentPair.second * it->second << std::endl;
 		}
 		catch (std::exception& e) {std::cerr << e.what() << std::endl;}
 		
@@ -141,7 +141,7 @@ bool	BitcoinExchange::_validRate (double& rate)
 	if (rate == -0)
 		rate = 0;
 	if (rate != static_cast<int>(rate))
-		return (false);
+		return (logError("Error: not a positive number"), false);
 	if (rate < 0 || rate > 1000)
 		return(false);
 	return(true);
