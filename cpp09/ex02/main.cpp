@@ -6,19 +6,19 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 15:34:57 by jodde             #+#    #+#             */
-/*   Updated: 2026/06/13 16:51:53 by jodde            ###   ########.fr       */
+/*   Updated: 2026/06/17 21:38:36 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "./DPmergeMe.hpp"
-#include "./VPmergeMe.hpp"
+#include "./PmergeMe.hpp"
 
 
-static void displayArg(std::string arg)
+static void displayArg(char **argv, int argc)
 {
 	std::cout << " arg received [";
-	for (std::string::iterator it = arg.begin(); it != arg.end(); ++it)
-		std::cout << *it;
+	for (int i = 1; i < argc; ++i)
+		std::cout << argv[i] << " ";
 	std::cout << "]" << std::endl;
 }	
 
@@ -26,8 +26,13 @@ int	main(int argc, char **argv)
 {
 	if (argc < 2)
 		return (logError("args : enter a sequence of positive integers "), 1);
-	displayArg(argv[1]);
-	VPmergeMe sortVec(argv[1]);
-	sortVec.displayVec();
+	std::string arg;
+	displayArg(argv, argc);
+	for (int i = 1; i < argc; i++)
+		arg += std::string(" ", 1) + argv[i];
+	VPmergeMe vec(arg);
+	vec.displayVec();
+	// DPmergeMe sortDeq(arg);
+	// sortDeq.displayDeq();
 	return (0);
 }
