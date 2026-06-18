@@ -6,7 +6,7 @@
 #    By: jodde <jodde@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/08 19:43:19 by jodde             #+#    #+#              #
-#    Updated: 2026/06/16 16:14:05 by jodde            ###   ########.fr        #
+#    Updated: 2026/06/18 18:02:42 by jodde            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ DEPFLAGS := -MMD -MP
 #======================Directories================
 OBJ_DIR := objs
 #======================Sources====================
-SRCS := ./main.cpp ./PmergeMe.cpp
-OBJS := $(OBJ_DIR)/main.o $(OBJ_DIR)/PmergeMe.o
+SRCS := ./main.cpp ./PmergeMe.cpp ./VPmergeMe.cpp ./DPmergeMe.cpp
+OBJS := $(OBJ_DIR)/main.o $(OBJ_DIR)/PmergeMe.o $(OBJ_DIR)/VPmergeMe.o $(OBJ_DIR)/DPmergeMe.o
 DEPS := $(OBJ_DIR:.o=.d)
 #======================Rules======================
 all : $(NAME)

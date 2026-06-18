@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 15:34:34 by jodde             #+#    #+#             */
-/*   Updated: 2026/06/18 15:44:03 by jodde            ###   ########.fr       */
+/*   Updated: 2026/06/18 17:53:03 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,12 @@ class	DPmergeMe : public PmergeMe<std::deque>
 		DPmergeMe& operator=(DPmergeMe const& src);
 	//member functions
 		void	initSort(std::string& arg);
+		void	sortDeq(std::deque<unsigned int>& data);
 		void	displayDeq();
+		void	displayDeq(std::deque<unsigned int> deq);
+		void	displayDeq(std::deque<std::pair<unsigned int, unsigned int> > deq);
+		void	insert(std::deque<unsigned int> &pend, std::deque<unsigned int> &main, std::deque<std::pair<unsigned int, unsigned int> >& pairs);
+		int		binarySearch(std::deque<unsigned int> &arr, int low, int high, unsigned int x); 
 	
 };
 

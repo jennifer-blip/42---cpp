@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 15:34:57 by jodde             #+#    #+#             */
-/*   Updated: 2026/06/17 21:38:36 by jodde            ###   ########.fr       */
+/*   Updated: 2026/06/18 17:49:14 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 		arg += std::string(" ", 1) + argv[i];
 	VPmergeMe vec(arg);
 	vec.displayVec();
-	// DPmergeMe sortDeq(arg);
-	// sortDeq.displayDeq();
+	DPmergeMe deq(arg);
+	deq.displayDeq();
 	return (0);
 }
