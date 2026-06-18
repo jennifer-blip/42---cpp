@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 18:01:45 by jodde             #+#    #+#             */
-/*   Updated: 2026/06/18 18:05:06 by jodde            ###   ########.fr       */
+/*   Updated: 2026/06/18 23:16:23 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	DPmergeMe::initSort(std::string& arg)
 	}
 	if (!(iss.eof()))
 		throw (std::logic_error("invalid arg format"));	
-	_execTime = clock() - _execTime;	
+	_execTime = clock();	
 	sortDeq(_cont);	
 }
 int DPmergeMe::binarySearch(std::deque<unsigned int> &arr, int low, int high, unsigned int x) 
@@ -112,6 +112,7 @@ void	DPmergeMe::sortDeq(std::deque<unsigned int>& data)
 	sortDeq(main);
 	insert(pend, main, pairs);
 	data = main;
+	_execTime = clock() - _execTime;
 }
 void	DPmergeMe::displayDeq()
 {

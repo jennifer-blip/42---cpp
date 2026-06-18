@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 18:00:44 by jodde             #+#    #+#             */
-/*   Updated: 2026/06/18 18:02:01 by jodde            ###   ########.fr       */
+/*   Updated: 2026/06/18 22:40:37 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	VPmergeMe::initSort(std::string& arg)
 	}
 	if (!(iss.eof()))
 		throw (std::logic_error("invalid arg format"));	
-	_execTime = clock() - _execTime;	
+	_execTime = clock();
 	sortVec(_cont);	
 }
 
@@ -115,6 +115,7 @@ void	VPmergeMe::sortVec(std::vector<unsigned int>& data)
 	sortVec(main);
 	insert(pend, main, pairs);
 	data = main;
+	_execTime = clock() - _execTime;
 }
 void	VPmergeMe::displayVec()
 {
