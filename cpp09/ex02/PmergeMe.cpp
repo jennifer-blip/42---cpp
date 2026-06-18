@@ -6,7 +6,7 @@
 /*   By: jodde <jodde@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 15:34:47 by jodde             #+#    #+#             */
-/*   Updated: 2026/06/18 17:15:25 by jodde            ###   ########.fr       */
+/*   Updated: 2026/06/18 17:31:09 by jodde            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,11 @@ void	VPmergeMe::insert(std::vector<unsigned int> &pend, std::vector<unsigned int
 	std::vector<bool> inserted(pend.size(), false);
 
     int k = 1;
+	// main.insert(main.begin(), pend.back());
     while (k < static_cast<int>(jacob.size()) - 1)
     {
         int group_end   = std::min(jacob[k+1], static_cast<unsigned int>(pend.size())) - 1;
         int group_start = jacob[k]; // exclus, on part de group_end vers group_start+1
-		main.insert(main.begin(), pend[0]); // on insère le premier élément de pend dans main
         for (int i = group_end; i >= group_start; i--)
         {
 			int	pos;
@@ -114,7 +114,7 @@ void	VPmergeMe::insert(std::vector<unsigned int> &pend, std::vector<unsigned int
             // La borne haute de binary search : position du bêta partenaire pend[i] est partenaire de main[i] AVANT les insertions→ il faut chercher main[i] dans le main courant
 			std::cout << " Inserting pend[" << i << "] = " << pend[i] << std::endl;
 			if (i >= static_cast<int>(pairs.size()))
-				pos = binarySearch(main, 0, static_cast<int>(main.size()), pend[i]);
+				pos = binarySearch(main, 0, static_cast<int>(main.size()) - 1, pend[i]);
 			else
 			{
 				int bound = binarySearch(main, 0, static_cast<int>(main.size()) - 1, pairs[i].second);
@@ -153,9 +153,9 @@ void	VPmergeMe::sortVec(std::vector<unsigned int>& data)
 		i += 2;
 	}
 	sortVec(main);
-	//data = main;
+	// data = main;
 	insert(pend, main, pairs);
-	//data = main;	
+	data = main;	
 }
 void	VPmergeMe::displayVec()
 {
