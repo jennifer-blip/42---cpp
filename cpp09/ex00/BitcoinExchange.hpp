@@ -31,7 +31,7 @@ class BitcoinExchange
 	private:
 		std::map<std::string, double> 	_exchangeRate;
 		bool						_validDate(std::string date);
-		bool						_validRate (double& rate);
+		void						_validRate (double rate);
 	
 	public:
 		//constructors and destructors

@@ -58,8 +58,10 @@ std::pair<std::string, double>	BitcoinExchange::parseData(std::string& line, cha
 	std::istringstream is(value);
 	if (!(is >> rate))
 		throw (std::runtime_error("invalid value"));
-	if (sep == '|' && !_validRate(rate))
-		throw (std::runtime_error("invalid value"));
+	if (rate == 0)
+		rate = 0;
+	if (sep == '|')
+		_validRate(rate);
 	return(std::pair<std::string, double>(date, rate));
 }
 void	BitcoinExchange::importDatabase(const std::string& dataFilename)
@@ -69,9 +71,8 @@ void	BitcoinExchange::importDatabase(const std::string& dataFilename)
 	if (!fs.is_open())
 			return (logError("could not open data file"));
 	std::getline(fs, buf, '\n');
-	while(fs.good())
+	while (std::getline(fs, buf, '\n'))
 	{
-		std::getline(fs, buf, '\n');
 		try {
 			if (buf.empty())
 				continue;
@@ -90,20 +91,22 @@ void	BitcoinExchange::calcBtc(const std::string& filename)
 	std::getline(fs, buf, '\n');
 	if (buf != "date | value")
 		return (logError("expected table format : 'date | value'"));
-	while(fs.good())
+	while (std::getline(fs, buf, '\n'))
 	{
-		std::getline(fs, buf, '\n');
 		try {
 			if(buf.empty())
 				continue;
 			std::pair <std::string, double> currentPair = parseData(buf, '|');
 			std::map <std::string, double>::iterator it = _exchangeRate.lower_bound(currentPair.first);
-			if (it == _exchangeRate.end())
+			if (it == _exchangeRate.end() || it->first != currentPair.first)
+			{
+				if (it == _exchangeRate.begin())
+					throw (std::runtime_error("no exchange rate available for this date"));
 				--it;
+			}
 			std::cout << currentPair.first << " => " << currentPair.second << " = " << currentPair.second * it->second << std::endl;
 		}
 		catch (std::exception& e) {std::cerr << e.what() << std::endl;}
-		
 	}
 }
 void	BitcoinExchange::displayData(void)
@@ -131,18 +134,16 @@ bool	BitcoinExchange::_validDate(std::string date)
 		return (false);
 	if (M > 12 || ((M == 1 || M == 3 || M == 5 || M == 7 || M == 8 || M == 10 || M == 12) && D > 31))
 		return (false);
-	if ((M == 2 && D > 29) || ((M == 4 || M == 6 || M == 9 || M == 11) && D > 30))
+	bool isLeap = (Y % 4 == 0 && Y % 100 != 0) || Y % 400 == 0;
+	if ((M == 2 && D > (isLeap ? 29 : 28)) || ((M == 4 || M == 6 || M == 9 || M == 11) && D > 30))
 		return (false);
 	return (true);
 }
 
-bool	BitcoinExchange::_validRate (double& rate)
+void	BitcoinExchange::_validRate (double rate)
 {
-	if (rate == -0)
-		rate = 0;
-	if (rate != static_cast<int>(rate))
-		return (logError("Error: not a positive number"), false);
-	if (rate < 0 || rate > 1000)
-		return(false);
-	return(true);
+	if (rate < 0)
+		throw (std::runtime_error("Error: not a positive number."));
+	if (rate > 1000)
+		throw (std::runtime_error("Error: too large a number."));
 }
