@@ -27,8 +27,7 @@ class	PmergeMe
 	protected:
 		container_type _cont;
 		clock_t							_execTime;
-		PmergeMe(): _execTime(clock()) {}
-		
+
 	public:
 		
 		PmergeMe(std::string& arg);
@@ -44,7 +43,9 @@ class	PmergeMe
 		void	sortNum(container_type& data);
 		void	displayNum();
 		void	displayNum(container_type& vec);
-		void	displayPairs(std::vector<std::pair<unsigned int, unsigned int> > vec);
+		void	displayPairs(std::vector<std::pair<unsigned int, unsigned int> > const& vec);
 };
 
 void	logError(std::string message);
+
+#include "PmergeMe.tpp"

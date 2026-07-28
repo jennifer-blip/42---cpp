@@ -23,7 +23,7 @@ void	logError(std::string message)
 
 //////////////// PmergeMe class
 template <template<class, class> class Container>
-PmergeMe<Container>::PmergeMe(std::string& arg){ _execTime = clock();}
+PmergeMe<Container>::PmergeMe(std::string& arg){ initSort(arg); }
 
 template <template<class, class> class Container>
 PmergeMe<Container>::PmergeMe(PmergeMe const& src){*this = src;}
@@ -48,9 +48,10 @@ void	PmergeMe<Container>::initSort(std::string& arg)
 		_cont.push_back(static_cast<unsigned int>(nb));
 	}
 	if (!(iss.eof()))
-		throw (std::logic_error("invalid arg format"));	
+		throw (std::logic_error("invalid arg format"));
 	_execTime = clock();
-	sortVec(_cont);		
+	sortNum(_cont);
+	_execTime = clock() - _execTime;
 }
 
 template <template<class, class> class Container>
@@ -91,7 +92,7 @@ int PmergeMe<Container>::binarySearch(container_type &arr, int low, int high, un
 {
     while (low <= high) {
         int mid = low + (high - low) / 2;
-        if (arr[mid] < x)
+        if (arr[static_cast<size_t>(mid)] < x)
             low = mid + 1;
 		else
 			high = mid -1;
@@ -103,7 +104,6 @@ template <template<class, class> class Container>
 void	PmergeMe<Container>::insert(container_type &pend, container_type &main, std::vector<std::pair<unsigned int, unsigned int> >& pairs)
 {
 	std::vector<unsigned int> jacob = generateJacob(pend.size());
-	std::vector<bool> inserted(pend.size(), false);
 
     int k = 1;
 	{
@@ -113,22 +113,23 @@ void	PmergeMe<Container>::insert(container_type &pend, container_type &main, std
 	}
     while (k < static_cast<int>(jacob.size()) - 1)
     {
-        int group_end   = std::min(jacob[k+1], static_cast<unsigned int>(pend.size())) - 1;
-        int group_start = jacob[k]; // exclus, on part de group_end vers group_start+1
+        size_t sk = static_cast<size_t>(k);
+        int group_end   = static_cast<int>(std::min(jacob[sk + 1], static_cast<unsigned int>(pend.size()))) - 1;
+        int group_start = static_cast<int>(jacob[sk]); // exclus, on part de group_end vers group_start+1
         for (int i = group_end; i >= group_start; i--)
         {
 			int	pos;
+			size_t si = static_cast<size_t>(i);
             if (i >= static_cast<int>(pend.size()))
                 continue;
 			if (i >= static_cast<int>(pairs.size()))
-				pos = binarySearch(main, 0, static_cast<int>(main.size()) - 1, pend[i]);
+				pos = binarySearch(main, 0, static_cast<int>(main.size()) - 1, pend[si]);
 			else
 			{
-				int bound = binarySearch(main, 0, static_cast<int>(main.size()) - 1, pairs[i].second);
-				pos = binarySearch(main, 0, bound, pend[i]);
+				int bound = binarySearch(main, 0, static_cast<int>(main.size()) - 1, pairs[si].second);
+				pos = binarySearch(main, 0, bound, pend[si]);
 			}
-            main.insert(main.begin() + pos, pend[i]);
-            inserted[i] = true;
+            main.insert(main.begin() + pos, pend[si]);
         }
         k++;
     }
@@ -139,9 +140,9 @@ void	PmergeMe<Container>::sortNum(container_type& data)
 {
 	if (data.size()	<= 1)
 		return;
-	size_t 	i = 0; 
+	size_t 	i = 0;
 	std::vector<std::pair<unsigned int, unsigned int> > pairs;
-	std::vector<unsigned int> pend;
+	container_type pend;
 	container_type main;
 	bool	is_odd = ((data.size() % 2));
 	while (i < data.size())
@@ -158,10 +159,9 @@ void	PmergeMe<Container>::sortNum(container_type& data)
 		main.push_back(data[i + 1]);
 		i += 2;
 	}
-	sortVec(main);
+	sortNum(main);
 	insert(pend, main, pairs);
 	data = main;
-	_execTime = clock() - _execTime;
 }
 template <template<class, class> class Container>
 void	PmergeMe<Container>::displayNum()
@@ -183,10 +183,10 @@ void	PmergeMe<Container>::displayNum(container_type& vec)
 }
 
 template <template<class, class> class Container>
-void	PmergeMe<Container>::displayPairs(std::vector<std::pair<unsigned int, unsigned int> > vec)
+void	PmergeMe<Container>::displayPairs(std::vector<std::pair<unsigned int, unsigned int> > const& vec)
 {
 	std::cout <<"[ ";
-	for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = vec.begin(); it != vec.end(); ++it)
+	for (std::vector<std::pair<unsigned int, unsigned int> >::const_iterator it = vec.begin(); it != vec.end(); ++it)
 		std::cout << "< " << it->first << ", " << it->second << " >";
 	std::cout << "]" << std::endl;
 }

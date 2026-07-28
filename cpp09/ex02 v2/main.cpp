@@ -30,9 +30,16 @@ int	main(int argc, char **argv)
 	displayArg(argv, argc);
 	for (int i = 1; i < argc; i++)
 		arg += std::string(" ", 1) + argv[i];
-	PmergeMe<std::vector> vec(arg);
-	vec.displayNum();
-	PmergeMe<std::deque> deq(arg);
-	deq.displayNum();
+	try
+	{
+		PmergeMe<std::vector> vec(arg);
+		vec.displayNum();
+		PmergeMe<std::deque> deq(arg);
+		deq.displayNum();
+	}
+	catch (std::exception& e)
+	{
+		return (logError(e.what()), 1);
+	}
 	return (0);
 }
