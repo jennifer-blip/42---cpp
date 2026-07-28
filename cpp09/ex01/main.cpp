@@ -19,11 +19,8 @@ int main (int argc, char **argv)
 		return (logError("Error : args : expected 'reverse polish notation calculation'"), 1);
 	RPN rpn(argv[1]);
 	try {
-		// rpn.checkArg();
-		rpn.fillStack();
-		// rpn.displayStack();
-		rpn.calculate();
-	} 
+		std::cout << rpn.calculate() << std::endl;
+	}
 	catch (std::exception& e) {std::cerr << e.what() << std::endl;}
 	return (0);
 }

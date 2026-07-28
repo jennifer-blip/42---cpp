@@ -12,43 +12,26 @@
 
 #pragma once
 #include <iostream>
-#include <sstream>
-#include <vector>
-#include <stack>
 #include <string>
-#include <cstdlib>
 #include <stdexcept>
-
-struct Token
-{
-	bool 	isOperator;
-	int		nb;
-	char	op;
-};
 
 class	RPN
 {
 	private:
-		std::stack<Token>	_stk;	
-		std::string			_arg;
+		std::string	_arg;
 		RPN();
-	
+
 	public:
 		//constructors and destructors
-		RPN(std::string arg);
+		RPN(std::string const& arg);
 		RPN(RPN const& src);
 		~RPN();
 		//assignment operator
 		RPN&	operator=(RPN const& src);
 		//accessors
-		const std::stack<Token>&	getStack() const;
-		const std::string&		getArg() const;
+		const std::string&	getArg() const;
 		//member functions
-		void	checkArg();
-		bool	isValidOperator(char c);
-		void	fillStack();
-		void	calculate();
-		void	displayStack();
+		int		calculate() const;
 };
 
 void	logError(std::string message);
